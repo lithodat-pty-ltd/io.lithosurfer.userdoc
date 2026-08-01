@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IsoplotR prototyping</title>
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <h1>IsoplotR prototyping</h1>
+        <p>
+          Load LithoSurfer PROD datapoints, choose mapping options, open
+          <strong>isoplotr.lithodat.com</strong>. Read-only. Prefer a dedicated AI user.
+        </p>
+        <span class="badge">PROD via Vite proxy · no writes</span>
+      </header>
+
+      <p id="error" class="error hidden" role="alert"></p>
+      <p id="status" class="ok hidden" role="status"></p>
+
+      <section id="view-login" class="card">
+        <h2>1. Sign in</h2>
+        <form id="login-form">
+          <label>
+            <span>Login</span>
+            <input id="username" type="text" autocomplete="username" required placeholder="e.g. hannelore.ai" />
+          </label>
+          <label>
+            <span>Password</span>
+            <input id="password" type="password" autocomplete="current-password" required />
+          </label>
+          <p class="hint">
+            Recommended: a dedicated <code>ROLE_USER</code> account with read access to the packages
+            you will test — not your personal password.
+          </p>
+          <div class="row">
+            <button id="login-btn" type="submit">Sign in to PROD</button>
+          </div>
+        </form>
+      </section>
+
+      <section id="view-app" class="hidden">
+        <div class="userbar">
+          <span>Signed in as <strong id="user-label">…</strong></span>
+          <button id="logout-btn" type="button" class="secondary">Log out</button>
+        </div>
+
+        <div class="card">
+          <h2>2. Load datapoints</h2>
+          <label>
+            <span>Method</span>
+            <select id="method"></select>
+          </label>
+          <label>
+            <span>Datapoints</span>
+            <textarea id="ids" placeholder="e.g. 4684952, datapoint_206083">133858895
+133858896
+144139941</textarea>
+            <span id="ids-hint" class="hint"></span>
+          </label>
+          <div class="row">
+            <button id="load-btn" type="button">Load from PROD</button>
+          </div>
+        </div>
+
+        <div id="view-options" class="card hidden">
+          <h2>3. Mapping options</h2>
+          <label>
+            <span>Ratio source</span>
+            <select id="ratio-source">
+              <option value="auto">Auto (commPb → total → 208)</option>
+              <option value="commPb">Common-Pb corrected</option>
+              <option value="total">Total / uncorrected</option>
+              <option value="corr208">208Pb-corrected</option>
+            </select>
+          </label>
+          <div>
+            <span style="display: block; font-weight: 600; margin-bottom: 0.35rem; font-size: 0.9rem"
+              >IsoplotR format</span
+            >
+            <div id="format-list" class="format-list"></div>
+          </div>
+          <div class="row" style="margin-top: 1rem">
+            <button id="open-btn" type="button">Open IsoplotR</button>
+            <button id="download-btn" type="button" class="secondary">Download session JSON</button>
+            <button id="preview-btn" type="button" class="secondary">Preview summary</button>
+          </div>
+          <pre id="preview" class="preview hidden"></pre>
+        </div>
+      </section>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
