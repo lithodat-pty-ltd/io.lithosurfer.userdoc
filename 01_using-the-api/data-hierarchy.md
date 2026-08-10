@@ -3,7 +3,7 @@
 How **geological / analytical records** relate to each other.  
 This is about parent→child data, not about who may edit it.
 
-Access control is separate: samples and data points each belong to a **data package**. That package decides view/write rights — see [Packages and access](packages-and-access.md). A package is **not** a parent in the sense below; it is an ownership boundary that many records point to.
+Access control with packages is separate see [Packages and access](packages-and-access.md). 
 
 ---
 
