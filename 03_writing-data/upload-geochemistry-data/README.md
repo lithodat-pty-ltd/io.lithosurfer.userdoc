@@ -2,7 +2,13 @@
 
 This guide is for geologists and data contributors preparing geochemistry datasets for LithoSurfer / EarthBank. It explains **what you need to understand** before you upload — not which button to click.
 
-Technical detail for scripted loads: [upload via API](upload-via-api/README.md).
+| Topic | Where |
+|---|---|
+| Sample → data point → concentrations | [Data hierarchy](../../01_using-the-api/data-hierarchy.md) |
+| Writable packages / access | [Packages and access](../../01_using-the-api/packages-and-access.md) |
+| General batch rules | [Batch upload via API](../batch-upload-via-api/) |
+| Geochem batch pipeline | [upload via API](upload-via-api/README.md) |
+| General API usage | [`01_using-the-api/`](../../01_using-the-api/) |
 
 ---
 
@@ -16,26 +22,24 @@ Without that context, LithoSurfer cannot safely put different lab packages on th
 
 ---
 
-## How LithoSurfer organises geochemistry
+## Geochemistry on the subject hierarchy
 
-Think in three levels:
+Geochem uses the standard analytical chain ([data hierarchy](../../01_using-the-api/data-hierarchy.md)). Put sample and analyses in a writable [data package](../../01_using-the-api/packages-and-access.md) when you upload — that is access control, not part of this tree:
 
 ```
-Data package          ← the project / survey container you are allowed to write to
-  └── Sample          ← the physical material (with location when known)
-        └── Analysis (GC data point)
-              ← one analytical session / lab package on that sample
-              ├── Element concentrations   (e.g. Zr, Au, Cu in ppm)
-              └── Oxide concentrations     (e.g. SiO₂, Al₂O₃ in wt%)
+Sample
+  └── GCDataPoint (analysis)
+        ├── Element concentrations
+        └── Oxide concentrations
 ```
 
 | Level | What it represents | Typical source columns |
 |---|---|---|
 | **Sample** | Rock, sediment, soil, pulp, … | Sample ID, lat/lon, sample kind, origin, sampling method |
-| **Analysis (GC data point)** | One method package / instrument run | Method code, digestion, technique, lab, date |
-| **Concentration** | One analyte value | Element/oxide, value, unit, `<`/`>`, detection limit |
+| **GC data point** | One method package / instrument run | Method code, digestion, technique, lab, date |
+| **Concentration** | One analyte value | Element/oxide, value, `<`/`>`, detection limit |
 
-If the same sample was analysed twice (duplicate, re-assay, different package), create **two analyses**, each with its own concentrations.
+If the same sample was analysed twice (duplicate, re-assay, different package), create **two** GC data points, each with its own concentrations.
 
 ---
 
@@ -50,7 +54,7 @@ If the same sample was analysed twice (duplicate, re-assay, different package), 
   - **Origin** (geological setting — LithoSurfer uses a hierarchical path such as `/Depositional/Glacial`)
   - **Sampling method**
 
-### 2. Analytical metadata (on the analysis / GC data point)
+### 2. Analytical metadata (on the GC data point)
 
 This is what makes the chemistry **comparable**.
 
@@ -130,13 +134,13 @@ Organize so that each level is unambiguous:
 
 Before upload, check:
 
+- [ ] Target **data package** is writable for you ([packages and access](../../01_using-the-api/packages-and-access.md)).
 - [ ] Every analysis that has chemistry also has a digestion category (use **Unknown** if truly unknown — do not leave it blank if you can avoid it).
 - [ ] Four-acid / HF methods are **Near-total**, not Total.
 - [ ] Fire assay Au/PGE is under **Fire assay**, not mixed into fusion totals for other elements.
 - [ ] Semi-quantitative historic data is tagged as such.
 - [ ] Source method codes are retained, not discarded after mapping.
 - [ ] Below-detection values keep their `<` (or equivalent) and DL when known.
-- [ ] You know which **data package** you are writing into, and that you have write access.
 
 ---
 
@@ -168,4 +172,4 @@ Either path needs the **same geological preparation**. The API only changes *how
 | Mapping a lab package to digestion lists | Lithodat (geochem / data team) |
 | API errors during bulk load | Lithodat, with package id, counts, and error text |
 
-Related: [Create data packages](../create-datapackages/) (when that guide is available).
+Related: [Create data packages](../create-datapackages/) (when available) · [Using the API](../../01_using-the-api/)
