@@ -74,4 +74,4 @@ Sample
 
 If the same sample was analysed twice, create **two** `GCDataPoint` rows, each with its own concentrations. Assign sample and data points to a writable package when you write them.
 
-Geology-oriented prep: [`03_writing-data/upload-geochemistry-data/`](../03_writing-data/upload-geochemistry-data/).
+What these fields mean: [Geochemistry data model](../04_understanding-data-models/geochemistry/). Preparing an export: [`03_writing-data/upload-geochemistry-data/`](../03_writing-data/upload-geochemistry-data/).

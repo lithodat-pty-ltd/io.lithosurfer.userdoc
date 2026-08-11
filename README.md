@@ -55,6 +55,7 @@ Use an agent that runs in **your own shell** — Claude Code, Cursor, or similar
 | [`01_using-the-api/`](01_using-the-api/) | Data model, access control, Swagger, name→id lookups — shared by reading and writing | Written |
 | [`02_reading-data/`](02_reading-data/) | Query and download workflows | Planned |
 | [`03_writing-data/`](03_writing-data/) | Create, batch upload, update | Written (except *create data packages*) |
+| [`04_understanding-data-models/`](04_understanding-data-models/) | What each analytical method records — the science behind the fields | Geochemistry written; other methods planned |
 
 ### Pages
 
@@ -67,7 +68,8 @@ Use an agent that runs in **your own shell** — Claude Code, Cursor, or similar
 | [Reference lists](01_using-the-api/reference-lists.md) | Resolving names (`Zr`, `Near-total`, …) to numeric IDs |
 | [Batch upload via API](03_writing-data/batch-upload-via-api/) | `POST …/batch` rules, `label\\session-id` naming, name→id maps |
 | [Update data](03_writing-data/update-data/) | Changing existing records (PUT) |
-| [Preparing geochemistry data](03_writing-data/upload-geochemistry-data/) | Digestion, quantitation, source codes — what a good geochem row needs |
+| [Geochemistry data model](04_understanding-data-models/geochemistry/) | Digestion, quantitation, aliquots, concentrations — what the geochem fields mean |
+| [Preparing geochemistry data](03_writing-data/upload-geochemistry-data/) | Shaping a lab export and the pre-flight checklist |
 | [Upload geochemistry via API](03_writing-data/upload-geochemistry-data/upload-via-api/) | End-to-end geochem batch pipeline with payloads |
 
 ---
@@ -84,6 +86,7 @@ Use an agent that runs in **your own shell** — Claude Code, Cursor, or similar
 | Turn `Zr` or `Near-total` into the ID the API expects | [Reference lists](01_using-the-api/reference-lists.md) |
 | Load many records at once | [Batch upload via API](03_writing-data/batch-upload-via-api/) |
 | Change records that already exist | [Update data](03_writing-data/update-data/) |
+| Understand what a geochem field actually means | [Geochemistry data model](04_understanding-data-models/geochemistry/) |
 | Prepare a lab export before uploading it | [Preparing geochemistry data](03_writing-data/upload-geochemistry-data/) |
 | Push a geochemistry dataset through the API | [Upload geochemistry via API](03_writing-data/upload-geochemistry-data/upload-via-api/) |
 

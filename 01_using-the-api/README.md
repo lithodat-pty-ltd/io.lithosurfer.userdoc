@@ -7,6 +7,7 @@ General information for working with LithoSurfer / EarthBank through the REST AP
 | How the API and data model work | **This folder** (`01_using-the-api`) |
 | Query / download workflows | [`02_reading-data/`](../02_reading-data/) |
 | Create, batch upload, update | [`03_writing-data/`](../03_writing-data/) |
+| What each analytical method records | [`04_understanding-data-models/`](../04_understanding-data-models/) |
 
 Exact request/response shapes change with server version — always confirm field names in **Swagger UI** for your host.
 
