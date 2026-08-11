@@ -13,14 +13,28 @@ Everything here is plain Markdown. There are no hidden instructions, no framewor
 
 ## Using this repo with an AI agent
 
-Clone the repository and point your assistant at the folder, then state the task:
+**New here? Start with [`00_getting-started/`](00_getting-started/)** — it walks you through installing an agent, setting your credentials safely, and running a script that lists the data packages you can write to.
+
+In short: clone this repository next to your own working folder, and start the agent from the folder containing both.
 
 ```text
-Use the documentation in ./io.lithosurfer.userdoc as your reference for LithoSurfer.
-Upload the geochemistry data in ./my-lab-export.xlsx to data package 12345.
+lithosurfer/
+├── io.lithosurfer.userdoc/   ← this documentation: reference only, never edit
+└── my-import/                ← your work: data, scripts, .env
+```
+
+Then open the session by saying which folder is which:
+
+```text
+Use ./io.lithosurfer.userdoc as reference documentation — read it, never edit it.
+Do all work in ./my-import.
+
+Upload the geochemistry data in my-import/lab-export.xlsx to data package 12345.
 ```
 
 The agent should read this page first, follow the routing table below to the relevant guide, and observe the [ground rules](#ground-rules-for-agents).
+
+Use an agent that runs in **your own shell** — Claude Code, Cursor, or similar. Assistants that execute code in a hosted sandbox cannot reach a LithoSurfer instance on a private network and cannot see credentials set on your machine. See [getting started](00_getting-started/) for the setup.
 
 **Before starting a write task, the agent needs from you:**
 
@@ -37,6 +51,7 @@ The agent should read this page first, follow the routing table below to the rel
 
 | Folder | Covers | Status |
 |---|---|---|
+| [`00_getting-started/`](00_getting-started/) | Installing an agent, credentials, first working script | Written |
 | [`01_using-the-api/`](01_using-the-api/) | Data model, access control, Swagger, name→id lookups — shared by reading and writing | Written |
 | [`02_reading-data/`](02_reading-data/) | Query and download workflows | Planned |
 | [`03_writing-data/`](03_writing-data/) | Create, batch upload, update | Written (except *create data packages*) |
@@ -45,6 +60,7 @@ The agent should read this page first, follow the routing table below to the rel
 
 | Page | Topic |
 |---|---|
+| [Getting started](00_getting-started/) | Agent setup, credentials, and a script that lists your writable packages |
 | [Data hierarchy](01_using-the-api/data-hierarchy.md) | Subject chain: sample → data point → measurements |
 | [Packages and access](01_using-the-api/packages-and-access.md) | Ownership / ACL: writable vs viewable; FINISHED / FROZEN |
 | [Endpoints and Swagger](01_using-the-api/endpoints-and-swagger.md) | Where to find operations; create / read / update / delete |
@@ -60,6 +76,8 @@ The agent should read this page first, follow the routing table below to the rel
 
 | I want to… | Read |
 |---|---|
+| Set up an agent and make my first API call | [Getting started](00_getting-started/) |
+| Find out which data packages I can write to | [Getting started](00_getting-started/) |
 | Understand how samples, analyses and measurements relate | [Data hierarchy](01_using-the-api/data-hierarchy.md) |
 | Work out why I cannot write / why a call was rejected | [Packages and access](01_using-the-api/packages-and-access.md) |
 | Find the right endpoint or exact field names | [Endpoints and Swagger](01_using-the-api/endpoints-and-swagger.md) |
@@ -86,6 +104,7 @@ Follow these unless the user explicitly overrides them.
 
 | Rule | Detail |
 |---|---|
+| **This repository is read-only** | It is reference material with an upstream the user pulls from. Write scripts, data and outputs into the user's own working folder. If you were not told which folder that is, ask before creating any file. |
 | **Verify against Swagger** | Confirm paths and DTO fields for the user's server before sending. DTOs change between versions; do not trust example payloads verbatim. |
 | **Never invent IDs** | Resolve every lookup against the live reference list. Do not guess `lElementId`, `digestionCategoryId`, or a data package ID. |
 | **Never invent data** | No fabricated detection limits, no converting a partial digest to a "total", no filling blank fields with plausible values. Flag gaps to the user instead. |
@@ -104,6 +123,18 @@ Follow these unless the user explicitly overrides them.
 - Each guide states its scope in the first lines and links to the general pages rather than repeating them.
 - Terse tables over prose; worked payloads over abstract description.
 - Version-specific details (exact DTO fields, host URLs, tokens) are deliberately **not** committed here — they belong in Swagger or with your Lithodat contact.
+
+---
+
+## Improving this documentation
+
+Found something wrong, unclear, or missing? Contributions are welcome — this is the one case where you do edit these files.
+
+1. Fork the repository (or branch, if you have write access).
+2. Make the change on a branch: `git checkout -b fix-digestion-table`.
+3. Open a pull request describing what was wrong.
+
+Keep your own scripts and data out of it — those belong in your working folder, not in a pull request.
 
 ---
 

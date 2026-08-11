@@ -1,0 +1,22 @@
+# Credentials - never commit
+.env
+*.env
+!.env.example
+
+# Tokens and caches
+.token
+cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node
+node_modules/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
