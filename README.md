@@ -20,16 +20,16 @@ In short: clone this repository next to your own working folder, and start the a
 ```text
 lithosurfer/
 ├── io.lithosurfer.userdoc/   ← this documentation: reference only, never edit
-└── my-import/                ← your work: data, scripts, .env
+└── my-project/               ← your work: data, scripts, .env
 ```
 
 Then open the session by saying which folder is which:
 
 ```text
 Use ./io.lithosurfer.userdoc as reference documentation — read it, never edit it.
-Do all work in ./my-import.
+Do all work in ./my-project.
 
-Upload the geochemistry data in my-import/lab-export.xlsx to data package 12345.
+Upload the geochemistry data in my-project/lab-export.xlsx to data package 12345.
 ```
 
 The agent should read this page first, follow the routing table below to the relevant guide, and observe the [ground rules](#ground-rules-for-agents).
