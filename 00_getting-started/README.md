@@ -10,35 +10,27 @@ At the end you will have run a script that lists the data packages you are allow
 
 
 
-## Use Claude Code
+## Use Claude Code in Claude Desktop
 
-This documentation assumes **[Claude Code](https://docs.claude.com/en/docs/claude-code/setup)**, a command-line agent that runs in your own terminal.
+This documentation assumes **[Claude Code](https://docs.claude.com/en/docs/claude-code/setup)** running inside the **Claude Desktop** app — the `</> Code` tab. No terminal required: you work in an ordinary window and Claude runs the commands for you.
 
-That last point is what matters. Claude Code executes scripts in *your* shell, so it inherits your network, your VPN and your environment variables. Chat-style assistants that run code in a hosted sandbox cannot reach a LithoSurfer instance on a private network, and cannot see credentials you set on your own machine.
+What matters is that it runs **on your own machine**. It inherits your network, your VPN and your environment variables, so it can reach a LithoSurfer instance that is not public, and it can use credentials that were never typed into the chat. The chat side of the app runs code in a cloud sandbox instead — useful for plenty of things, but it cannot see your local environment.
 
-Cursor, VS Code with an agent extension, and similar tools work the same way and are fine substitutes — everything below applies with only the install step changed.
+Prefer a terminal or an IDE? The same agent ships as a command-line tool (`claude`) and as a VS Code / JetBrains extension. Everything below applies unchanged; only the way you start a session differs.
 
 ---
 
 
 
-## Step 1 — Install
+## Step 1 — Install Claude Desktop
 
-**Windows** (PowerShell, no administrator rights needed):
+1. Install **[Claude Desktop](https://claude.ai/download)** and sign in with your Claude account.
+2. On Windows, also install **[Git for Windows](https://git-scm.com/download/win)**. It provides the `git` command and a Bash shell, so the examples here work as written.
+3. Open the app and switch to the `</> Code` tab. Sessions started there run on your computer and can execute scripts.
 
-```powershell
-irm https://claude.ai/install.ps1 | iex
-```
+That is the whole installation. You will not need a terminal again.
 
-Also install **[Git for Windows](https://git-scm.com/download/win)**. Claude Code then uses Bash as its shell, so the commands in this documentation work as written instead of needing PowerShell equivalents.
 
-**macOS / Linux:**
-
-```bash
-curl -fsSL https://claude.ai/install.sh | bash
-```
-
-Then run `claude` once and follow the browser prompt to sign in.
 
 ---
 
@@ -48,11 +40,16 @@ Then run `claude` once and follow the browser prompt to sign in.
 
 Keep two folders side by side: this documentation, and your own work.
 
-```bash
-mkdir lithosurfer && cd lithosurfer
-git clone https://github.com/lithodat-pty-ltd/io.lithosurfer.userdoc.git
-mkdir my-project
+1. Create an empty folder called `lithosurfer`, wherever you keep your work.
+2. In the `</> Code` tab, start a new session in that folder.
+3. Ask Claude to set it up:
+
+```text
+Clone https://github.com/lithodat-pty-ltd/io.lithosurfer.userdoc.git into this
+folder, and create an empty folder called my-project beside it.
 ```
+
+You should end up with:
 
 ```text
 lithosurfer/
@@ -62,11 +59,7 @@ lithosurfer/
 
 **Treat the documentation clone as read-only.** Your scripts, data and credentials belong in your own folder. That keeps `git pull` clean forever — there is nothing local to conflict with — and keeps your lab data out of a repository you do not own.
 
-Update the documentation at any time:
-
-```bash
-cd io.lithosurfer.userdoc && git pull && cd ..
-```
+Update the documentation at any time by asking *"pull the latest version of the documentation"*, or by running `git pull` inside the clone yourself.
 
 Name `my-project` whatever suits the job — `rosebery-2026`, `tasmania-geochem`. Create a new one per project.
 
@@ -92,16 +85,18 @@ Many mail providers let you invent a spare address on the spot with a `+` suffix
 
 **Never paste a password into an agent chat window.** Anything you type there is stored in the conversation, may be echoed back in logs, and tends to end up hardcoded in the script the agent writes — one `git add` away from being published. A well-behaved agent will refuse, and it is right to.
 
-The agent does not need your credentials. The *script* does. Set them yourself, once, **in your own project folder** — not in the documentation clone:
+The agent does not need your credentials. The *script* does. They belong **in your own project folder**, not in the documentation clone.
 
-```bash
-cp io.lithosurfer.userdoc/00_getting-started/.env.example my-project/.env
+Ask Claude to put the template in place:
+
+```text
+Copy io.lithosurfer.userdoc/00_getting-started/.env.example to my-project/.env
 ```
 
-Edit `my-project/.env` and fill in your login:
+Then open `my-project/.env` in a text editor **yourself** and fill in your login. This is the one step you do by hand, and that is deliberate — the password never passes through the chat:
 
 ```bash
-LITHOSURFER_USER=your-logim
+LITHOSURFER_USER=your-login
 LITHOSURFER_PASSWORD=your-password
 LITHOSURFER_HOST=https://app.ausgeochem.org
 ```
@@ -124,7 +119,14 @@ Prefer not to store the password at all? Leave `LITHOSURFER_PASSWORD` out and th
 
 ## Step 4 — Run the first script
 
-Run it from your own folder, so it picks up the `.env` you just created:
+Ask Claude to run it from your project folder, so it picks up the `.env` you just created:
+
+```text
+Run io.lithosurfer.userdoc/00_getting-started/list_my_packages.py from the
+my-project folder.
+```
+
+Or run it yourself, if you have a terminal open anyway:
 
 ```bash
 cd my-project
@@ -166,12 +168,7 @@ The ID from this list is the `dataPackageId` every write operation needs.
 
 ## Step 5 — Hand over to the agent
 
-Start the agent from the **parent** folder, so it can see the documentation and your project at once:
-
-```bash
-cd ~/lithosurfer
-claude
-```
+Start your sessions in the **parent** `lithosurfer` folder, so Claude can see the documentation and your project at once — the same folder you used in step 2. From the terminal that is `cd lithosurfer && claude`.
 
 Open every session by telling it which folder is which. This is the single most useful sentence you can type:
 
@@ -230,15 +227,16 @@ Swagger UI for the production host: [https://app.ausgeochem.org/swagger-ui.html]
 ## Troubleshooting
 
 
-| Symptom                                            | Cause                                                  | Fix                                                                                                      |
-| -------------------------------------------------- | ------------------------------------------------------ | -------------------------------------------------------------------------------------------------------- |
-| The agent refuses to accept your password          | You pasted it into the chat                            | Put it in `.env` instead (step 3) — the refusal is correct                                               |
-| The agent cannot run scripts, or reports a sandbox | You are using a hosted chat assistant, not Claude Code | Install Claude Code (step 1)                                                                             |
-| `python: command not found`                        | Python missing from PATH                               | Install Python 3, or try `python3`                                                                       |
-| Commands in the docs fail on Windows               | Shell fell back to PowerShell                          | Install Git for Windows (step 1)                                                                         |
-| `HTTP 401` on every call                           | Token expired mid-session                              | Tokens are short-lived; re-run the script to fetch a new one                                             |
-| Empty search results you expected data in          | The server filters by access before returning          | Set `allowedAccess` on the query — see [packages and access](../01_using-the-api/packages-and-access.md) |
-| `git pull` reports local changes in the docs clone | The agent wrote into the documentation folder          | `git checkout .` there to discard, and tell the agent to work in your own folder (step 5)                |
-| The script cannot find your credentials            | `.env` is not in the folder you ran from               | Run from your project folder, or export the variables in your shell                                      |
+| Symptom                                            | Cause                                                       | Fix                                                                                                      |
+| -------------------------------------------------- | ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| The agent refuses to accept your password          | You pasted it into the chat                                 | Put it in `.env` instead (step 3) — the refusal is correct                                               |
+| The agent cannot run scripts, or reports a sandbox | You are in the chat side of the app, not the `</> Code` tab | Start the session from the `</> Code` tab (step 1)                                                       |
+| `git: command not found`, or cloning fails         | Git is not installed                                        | Install Git for Windows (step 1)                                                                         |
+| `python: command not found`                        | Python missing from PATH                                    | Install Python 3, or try `python3`                                                                       |
+| Commands in the docs fail on Windows               | Shell fell back to PowerShell                               | Install Git for Windows (step 1)                                                                         |
+| `HTTP 401` on every call                           | Token expired mid-session                                   | Tokens are short-lived; re-run the script to fetch a new one                                             |
+| Empty search results you expected data in          | The server filters by access before returning               | Set `allowedAccess` on the query — see [packages and access](../01_using-the-api/packages-and-access.md) |
+| `git pull` reports local changes in the docs clone | The agent wrote into the documentation folder               | `git checkout .` there to discard, and tell the agent to work in your own folder (step 5)                |
+| The script cannot find your credentials            | `.env` is not in the folder you ran from                    | Run from your project folder, or export the variables in your shell                                      |
 
 

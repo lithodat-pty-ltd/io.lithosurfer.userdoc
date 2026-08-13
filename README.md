@@ -34,7 +34,7 @@ Upload the geochemistry data in my-project/lab-export.xlsx to data package 12345
 
 The agent should read this page first, follow the routing table below to the relevant guide, and observe the [ground rules](#ground-rules-for-agents).
 
-Use an agent that runs in **your own shell** — Claude Code, Cursor, or similar. Assistants that execute code in a hosted sandbox cannot reach a LithoSurfer instance on a private network and cannot see credentials set on your machine. See [getting started](00_getting-started/) for the setup.
+Use an agent that runs **on your own machine** — Claude Code, most simply via the `</> Code` tab in Claude Desktop, which needs no terminal. Assistants that execute code in a hosted sandbox cannot reach a LithoSurfer instance on a private network and cannot see credentials set on your machine. See [getting started](00_getting-started/) for the setup.
 
 **Before starting a write task, the agent needs from you:**
 
