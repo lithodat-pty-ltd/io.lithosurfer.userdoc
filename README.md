@@ -145,6 +145,5 @@ Keep your own scripts and data out of it — those belong in your working folder
 
 | Question | Who |
 |---|---|
-| Data package, access, tokens | Your institution admin or Lithodat |
-| Mapping a lab package to the digestion lists | Lithodat (geochem / data team) |
+| Data package, access, tokens | Your institution admin or Lithodat (support@lithosurfer.io) |
 | API errors during a bulk load | Lithodat — include package ID, counts, and the error text |
