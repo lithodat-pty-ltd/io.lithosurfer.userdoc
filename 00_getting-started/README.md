@@ -12,7 +12,9 @@ At the end you will have run a script that lists the data packages you are allow
 
 ## Video
 
-[![Episode 01 — Getting started](resources/video-previews/01-getting-started.png)](https://docs.google.com/presentation/d/1yNO_E41_BNXoN3F_wt0tb6J79sSl7DkcsAw1XX5mDX4/edit?slide=id.g3f71ed5ca0b_0_5#slide=id.g3f71ed5ca0b_0_5)
+<a href="https://docs.google.com/presentation/d/1yNO_E41_BNXoN3F_wt0tb6J79sSl7DkcsAw1XX5mDX4/edit?slide=id.g3f71ed5ca0b_0_5#slide=id.g3f71ed5ca0b_0_5"><img src="resources/video-previews/01-getting-started.png" alt="Episode 01 — Getting started" width="280"></a>
+
+**01 · Getting started** — LithoSurfer API + an AI agent as a do-it-yourself interface. Watch this first, then follow the steps below.
 
 ---
 
