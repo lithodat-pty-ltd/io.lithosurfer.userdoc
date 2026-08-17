@@ -10,6 +10,14 @@ At the end you will have run a script that lists the data packages you are allow
 
 
 
+## Video
+
+[![Episode 01 — Getting started](resources/video-previews/01-getting-started.png)](https://docs.google.com/presentation/d/1yNO_E41_BNXoN3F_wt0tb6J79sSl7DkcsAw1XX5mDX4/edit?slide=id.g3f71ed5ca0b_0_5#slide=id.g3f71ed5ca0b_0_5)
+
+---
+
+
+
 ## Use Claude Code in Claude Desktop
 
 This documentation assumes **[Claude Code](https://docs.claude.com/en/docs/claude-code/setup)** running inside the **Claude Desktop** app — the `</> Code` tab. No terminal required: you work in an ordinary window and Claude runs the commands for you.
