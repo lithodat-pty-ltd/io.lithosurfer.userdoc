@@ -8,17 +8,13 @@ At the end you will have run a script that lists the data packages you are allow
 
 ---
 
-
-
 ## Video
 
-<a href="https://docs.google.com/presentation/d/1yNO_E41_BNXoN3F_wt0tb6J79sSl7DkcsAw1XX5mDX4/edit?slide=id.g3f71ed5ca0b_0_5#slide=id.g3f71ed5ca0b_0_5"><img src="resources/video-previews/01-getting-started.png" alt="Episode 01 — Getting started" width="280"></a>
+<a href="https://drive.google.com/open?id=1hl0WOi8HeldXq94g2IirMlVyrhaDLv4H&usp=drive_fs"><img src="resources/video-previews/01-getting-started.png" alt="Episode 01 — Getting started" width="280"></a>
 
-**01 · Getting started** — LithoSurfer API + an AI agent as a do-it-yourself interface. Watch this first, then follow the steps below.
+This video shows, step by step, how to go through this chapter.
 
 ---
-
-
 
 ## Use Claude Code in Claude Desktop
 
@@ -30,8 +26,6 @@ Prefer a terminal or an IDE? The same agent ships as a command-line tool (`claud
 
 ---
 
-
-
 ## Step 1 — Install Claude Desktop
 
 1. Install **[Claude Desktop](https://claude.ai/download)** and sign in with your Claude account.
@@ -40,11 +34,7 @@ Prefer a terminal or an IDE? The same agent ships as a command-line tool (`claud
 
 That is the whole installation. You will not need a terminal again.
 
-
-
 ---
-
-
 
 ## Step 2 — Set up your folders
 
@@ -75,11 +65,7 @@ Name `my-project` whatever suits the job — `rosebery-2026`, `tasmania-geochem`
 
 ---
 
-
-
 ## Step 3 — Set your credentials
-
-
 
 ### Use a dedicated account, not your own login
 
@@ -124,8 +110,6 @@ Prefer not to store the password at all? Leave `LITHOSURFER_PASSWORD` out and th
 
 
 ---
-
-
 
 ## Step 4 — Run the first script
 
@@ -174,8 +158,6 @@ The ID from this list is the `dataPackageId` every write operation needs.
 
 ---
 
-
-
 ## Step 5 — Hand over to the agent
 
 Start your sessions in the **parent** `lithosurfer` folder, so Claude can see the documentation and your project at once — the same folder you used in step 2. From the terminal that is `cd lithosurfer && claude`.
@@ -212,8 +194,6 @@ Three habits worth keeping:
 
 ---
 
-
-
 ## What the agent should know
 
 Point it at these once it is running:
@@ -231,8 +211,6 @@ Point it at these once it is running:
 Swagger UI for the production host: [https://app.ausgeochem.org/swagger-ui.html](https://app.ausgeochem.org/swagger-ui.html)
 
 ---
-
-
 
 ## Troubleshooting
 
