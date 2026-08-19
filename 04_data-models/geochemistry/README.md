@@ -7,6 +7,7 @@ What a geochemistry record in LithoSurfer / EarthBank represents, and which meta
 | The pattern all methods share | [Data models](../) |
 | Sample → data point → measurements | [Data hierarchy](../../01_using-the-api/data-hierarchy.md) |
 | Preparing a lab export for upload | [Upload geochemistry data](../../03_contributing-data/upload-geochemistry-data/) |
+| Quality checks before load | [Quality checks](quality-checks.md) |
 | The batch upload pipeline | [Upload via API](../../03_contributing-data/upload-geochemistry-data/upload-via-api/) |
 | Resolving vocabulary names to IDs | [Reference lists](../../01_using-the-api/reference-lists.md) |
 
@@ -88,7 +89,7 @@ How quantitative the number is — independent of digestion.
 | Value | Meaning |
 |---|---|
 | **Quantitative** | Reported as a measured value with stated precision |
-| **Semi-quantitative** | Order-of-magnitude only. Historic arc emission spectrography and similar; values fall on a preferred series |
+| **Semi-quantitative** | Order-of-magnitude only. Historic arc emission spectrography and similar; values fall on a preferred series — see [quality checks](quality-checks.md#historic-spectrography-fingerprint) |
 | **Qualitative** | Presence, absence or "trace" only. No number |
 | **Unknown** | Not recorded by the source |
 
@@ -214,4 +215,5 @@ Error types resolve against `/api/core/l-error-types` and reference materials ag
 ## Next
 
 - Preparing a spreadsheet for upload: [Upload geochemistry data](../../03_contributing-data/upload-geochemistry-data/)
+- Quality checks (sentinels, closure, spectrography fingerprint): [Quality checks](quality-checks.md)
 - The batch pipeline with payloads: [Upload via API](../../03_contributing-data/upload-geochemistry-data/upload-via-api/)

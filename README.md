@@ -69,6 +69,7 @@ Use an agent that runs **on your own machine** — Claude Code, most simply via 
 | [Batch upload via API](03_contributing-data/batch-upload-via-api/) | `POST …/batch` rules, `label\\session-id` naming, name→id maps |
 | [Update data](03_contributing-data/update-data/) | Changing existing records (PUT) |
 | [Geochemistry data model](04_data-models/geochemistry/) | Digestion, quantitation, aliquots, concentrations — what the geochem fields mean |
+| [Geochemistry quality checks](04_data-models/geochemistry/quality-checks.md) | Sentinels, oxide closure, unit conversion, historic spectrography fingerprint |
 | [Preparing geochemistry data](03_contributing-data/upload-geochemistry-data/) | Shaping a lab export and the pre-flight checklist |
 | [Upload geochemistry via API](03_contributing-data/upload-geochemistry-data/upload-via-api/) | End-to-end geochem batch pipeline with payloads |
 
@@ -87,6 +88,7 @@ Use an agent that runs **on your own machine** — Claude Code, most simply via 
 | Load many records at once | [Batch upload via API](03_contributing-data/batch-upload-via-api/) |
 | Change records that already exist | [Update data](03_contributing-data/update-data/) |
 | Understand what a geochem field actually means | [Geochemistry data model](04_data-models/geochemistry/) |
+| Check a geochem export for sentinels, closure, or semi-quantitative fingerprint | [Geochemistry quality checks](04_data-models/geochemistry/quality-checks.md) |
 | Prepare a lab export before uploading it | [Preparing geochemistry data](03_contributing-data/upload-geochemistry-data/) |
 | Push a geochemistry dataset through the API | [Upload geochemistry via API](03_contributing-data/upload-geochemistry-data/upload-via-api/) |
 

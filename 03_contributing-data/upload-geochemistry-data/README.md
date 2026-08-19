@@ -7,6 +7,7 @@ The practical steps for getting a geochemistry dataset ready to load — how to 
 | Topic | Where |
 |---|---|
 | What the fields mean, digestion and quantitation vocabularies | [Geochemistry data model](../../04_data-models/geochemistry/) |
+| Sentinels, oxide closure, unit conversion, spectrography fingerprint | [Quality checks](../../04_data-models/geochemistry/quality-checks.md) |
 | Sample → data point → concentrations | [Data hierarchy](../../01_using-the-api/data-hierarchy.md) |
 | Writable packages / access | [Packages and access](../../01_using-the-api/packages-and-access.md) |
 | General batch rules | [Batch upload via API](../batch-upload-via-api/) |
@@ -39,6 +40,7 @@ If the same sample was analysed twice, those are two analyses. Keep them separat
 - [ ] Below-detection values keep their `<` and detection limit where the source published them.
 - [ ] Element and oxide values are separated, in the units the laboratory reported.
 - [ ] Duplicate analyses of one sample remain distinct analyses.
+- [ ] Sentinels, oxide totals, unit conversion and historic spectrography have been checked ([quality checks](../../04_data-models/geochemistry/quality-checks.md)).
 
 Every item above is a mistake that is expensive to correct after loading. The reasoning behind each one is in the [data model page](../../04_data-models/geochemistry/).
 
