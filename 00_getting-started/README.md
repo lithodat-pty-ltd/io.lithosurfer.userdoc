@@ -183,7 +183,7 @@ samples in data package 12345.
 
 ```text
 I have a lab export at my-project/rosebery.xlsx. Walk me through preparing it
-for upload, following 03_writing-data/upload-geochemistry-data/.
+for upload, following 03_contributing-data/upload-geochemistry-data/.
 ```
 
 Three habits worth keeping:
@@ -205,7 +205,7 @@ Point it at these once it is running:
 | Why a write was rejected               | [Packages and access](../01_using-the-api/packages-and-access.md)     |
 | Exact endpoints and field names        | [Endpoints and Swagger](../01_using-the-api/endpoints-and-swagger.md) |
 | Turning `Zr` into the ID the API wants | [Reference lists](../01_using-the-api/reference-lists.md)             |
-| Loading many records at once           | [Batch upload via API](../03_writing-data/batch-upload-via-api/)      |
+| Loading many records at once           | [Batch upload via API](../03_contributing-data/batch-upload-via-api/)      |
 
 
 Swagger UI for the production host: [https://app.ausgeochem.org/swagger-ui.html](https://app.ausgeochem.org/swagger-ui.html)

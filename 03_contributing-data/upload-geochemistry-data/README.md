@@ -2,11 +2,11 @@
 
 The practical steps for getting a geochemistry dataset ready to load — how to shape your export and what to check before you send anything.
 
-**Read [Geochemistry](../../04_understanding-data-models/geochemistry/) first.** It explains what the fields mean, which vocabularies exist, and how to map a lab package onto them. This page assumes you have done that mapping and are ready to organise the data.
+**Read [Geochemistry](../../04_data-models/geochemistry/) first.** It explains what the fields mean, which vocabularies exist, and how to map a lab package onto them. This page assumes you have done that mapping and are ready to organise the data.
 
 | Topic | Where |
 |---|---|
-| What the fields mean, digestion and quantitation vocabularies | [Geochemistry data model](../../04_understanding-data-models/geochemistry/) |
+| What the fields mean, digestion and quantitation vocabularies | [Geochemistry data model](../../04_data-models/geochemistry/) |
 | Sample → data point → concentrations | [Data hierarchy](../../01_using-the-api/data-hierarchy.md) |
 | Writable packages / access | [Packages and access](../../01_using-the-api/packages-and-access.md) |
 | General batch rules | [Batch upload via API](../batch-upload-via-api/) |
@@ -40,7 +40,7 @@ If the same sample was analysed twice, those are two analyses. Keep them separat
 - [ ] Element and oxide values are separated, in the units the laboratory reported.
 - [ ] Duplicate analyses of one sample remain distinct analyses.
 
-Every item above is a mistake that is expensive to correct after loading. The reasoning behind each one is in the [data model page](../../04_understanding-data-models/geochemistry/).
+Every item above is a mistake that is expensive to correct after loading. The reasoning behind each one is in the [data model page](../../04_data-models/geochemistry/).
 
 ---
 

@@ -4,10 +4,10 @@ What a geochemistry record in LithoSurfer / EarthBank represents, and which meta
 
 | Related | Doc |
 |---|---|
-| The pattern all methods share | [Understanding the data models](../) |
+| The pattern all methods share | [Data models](../) |
 | Sample → data point → measurements | [Data hierarchy](../../01_using-the-api/data-hierarchy.md) |
-| Preparing a lab export for upload | [Upload geochemistry data](../../03_writing-data/upload-geochemistry-data/) |
-| The batch upload pipeline | [Upload via API](../../03_writing-data/upload-geochemistry-data/upload-via-api/) |
+| Preparing a lab export for upload | [Upload geochemistry data](../../03_contributing-data/upload-geochemistry-data/) |
+| The batch upload pipeline | [Upload via API](../../03_contributing-data/upload-geochemistry-data/upload-via-api/) |
 | Resolving vocabulary names to IDs | [Reference lists](../../01_using-the-api/reference-lists.md) |
 
 Field names below come from the live Swagger spec. Confirm them against Swagger for your own server before writing — they change between versions.
@@ -213,5 +213,5 @@ Error types resolve against `/api/core/l-error-types` and reference materials ag
 
 ## Next
 
-- Preparing a spreadsheet for upload: [Upload geochemistry data](../../03_writing-data/upload-geochemistry-data/)
-- The batch pipeline with payloads: [Upload via API](../../03_writing-data/upload-geochemistry-data/upload-via-api/)
+- Preparing a spreadsheet for upload: [Upload geochemistry data](../../03_contributing-data/upload-geochemistry-data/)
+- The batch pipeline with payloads: [Upload via API](../../03_contributing-data/upload-geochemistry-data/upload-via-api/)

@@ -1,8 +1,8 @@
-# Writing data
+# Contributing data
 
 Guides for **creating and changing** data in LithoSurfer / EarthBank.
 
-General API background (hierarchy, packages, Swagger, reference lists) lives in [`01_using-the-api/`](../01_using-the-api/). This folder is for write workflows.
+General API background (hierarchy, packages, Swagger, reference lists) lives in [`01_using-the-api/`](../01_using-the-api/). This folder is for contribution workflows.
 
 | Guide | Topic |
 |---|---|

@@ -1,8 +1,8 @@
-# Understanding the data models
+# Data models
 
 What each analytical method actually records, and why the metadata around a number matters as much as the number itself.
 
-These pages are **subject matter**, not workflow. They apply whether you are querying data ([`02_reading-data/`](../02_reading-data/)) or uploading it ([`03_writing-data/`](../03_writing-data/)). Read the page for your method before you map a lab export onto LithoSurfer fields, or before you interpret someone else's data.
+These pages are **subject matter**, not workflow. They apply whether you are querying data ([`02_consuming-data/`](../02_consuming-data/)) or uploading it ([`03_contributing-data/`](../03_contributing-data/)). Read the page for your method before you map a lab export onto LithoSurfer fields, or before you interpret someone else's data.
 
 | Related | Doc |
 |---|---|

@@ -17,9 +17,9 @@ Most domain entities follow the same shape (example: geochem data point):
 | Action | Typical HTTP | Notes |
 |---|---|---|
 | Create one | `POST /api/…/Entity` | No `id` on the body |
-| Create many | `POST /api/…/Entity/batch` | See [batch upload via API](../03_writing-data/batch-upload-via-api/) |
-| Update one | `PUT /api/…/Entity` | Body must include existing `id` — see [update data](../03_writing-data/update-data/) |
-| Get / search | `GET` or `POST …/post` with criteria | Often paged (`page`, `size`) — see [`02_reading-data/`](../02_reading-data/) when guides exist |
+| Create many | `POST /api/…/Entity/batch` | See [batch upload via API](../03_contributing-data/batch-upload-via-api/) |
+| Update one | `PUT /api/…/Entity` | Body must include existing `id` — see [update data](../03_contributing-data/update-data/) |
+| Get / search | `GET` or `POST …/post` with criteria | Often paged (`page`, `size`) — see [`02_consuming-data/`](../02_consuming-data/) when guides exist |
 | Count | `GET …/count` | Same criteria idea |
 | Delete | `DELETE /api/…/Entity/{id}` | Package must be writable |
 

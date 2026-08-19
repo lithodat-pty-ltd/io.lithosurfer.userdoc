@@ -52,10 +52,10 @@ Use an agent that runs **on your own machine** — Claude Code, most simply via 
 | Folder | Covers | Status |
 |---|---|---|
 | [`00_getting-started/`](00_getting-started/) | Installing an agent, credentials, first working script | Written |
-| [`01_using-the-api/`](01_using-the-api/) | Data model, access control, Swagger, name→id lookups — shared by reading and writing | Written |
-| [`02_reading-data/`](02_reading-data/) | Query and download workflows | Planned |
-| [`03_writing-data/`](03_writing-data/) | Create, batch upload, update | Written (except *create data packages*) |
-| [`04_understanding-data-models/`](04_understanding-data-models/) | What each analytical method records — the science behind the fields | Geochemistry written; other methods planned |
+| [`01_using-the-api/`](01_using-the-api/) | Data model, access control, Swagger, name→id lookups — shared by consuming and contributing | Written |
+| [`02_consuming-data/`](02_consuming-data/) | Query and download workflows | Planned |
+| [`03_contributing-data/`](03_contributing-data/) | Create, batch upload, update | Written (except *create data packages*) |
+| [`04_data-models/`](04_data-models/) | What each analytical method records — the science behind the fields | Geochemistry written; other methods planned |
 
 ### Pages
 
@@ -66,11 +66,11 @@ Use an agent that runs **on your own machine** — Claude Code, most simply via 
 | [Packages and access](01_using-the-api/packages-and-access.md) | Ownership / ACL: writable vs viewable; FINISHED / FROZEN |
 | [Endpoints and Swagger](01_using-the-api/endpoints-and-swagger.md) | Where to find operations; create / read / update / delete |
 | [Reference lists](01_using-the-api/reference-lists.md) | Resolving names (`Zr`, `Near-total`, …) to numeric IDs |
-| [Batch upload via API](03_writing-data/batch-upload-via-api/) | `POST …/batch` rules, `label\\session-id` naming, name→id maps |
-| [Update data](03_writing-data/update-data/) | Changing existing records (PUT) |
-| [Geochemistry data model](04_understanding-data-models/geochemistry/) | Digestion, quantitation, aliquots, concentrations — what the geochem fields mean |
-| [Preparing geochemistry data](03_writing-data/upload-geochemistry-data/) | Shaping a lab export and the pre-flight checklist |
-| [Upload geochemistry via API](03_writing-data/upload-geochemistry-data/upload-via-api/) | End-to-end geochem batch pipeline with payloads |
+| [Batch upload via API](03_contributing-data/batch-upload-via-api/) | `POST …/batch` rules, `label\\session-id` naming, name→id maps |
+| [Update data](03_contributing-data/update-data/) | Changing existing records (PUT) |
+| [Geochemistry data model](04_data-models/geochemistry/) | Digestion, quantitation, aliquots, concentrations — what the geochem fields mean |
+| [Preparing geochemistry data](03_contributing-data/upload-geochemistry-data/) | Shaping a lab export and the pre-flight checklist |
+| [Upload geochemistry via API](03_contributing-data/upload-geochemistry-data/upload-via-api/) | End-to-end geochem batch pipeline with payloads |
 
 ---
 
@@ -84,11 +84,11 @@ Use an agent that runs **on your own machine** — Claude Code, most simply via 
 | Work out why I cannot write / why a call was rejected | [Packages and access](01_using-the-api/packages-and-access.md) |
 | Find the right endpoint or exact field names | [Endpoints and Swagger](01_using-the-api/endpoints-and-swagger.md) |
 | Turn `Zr` or `Near-total` into the ID the API expects | [Reference lists](01_using-the-api/reference-lists.md) |
-| Load many records at once | [Batch upload via API](03_writing-data/batch-upload-via-api/) |
-| Change records that already exist | [Update data](03_writing-data/update-data/) |
-| Understand what a geochem field actually means | [Geochemistry data model](04_understanding-data-models/geochemistry/) |
-| Prepare a lab export before uploading it | [Preparing geochemistry data](03_writing-data/upload-geochemistry-data/) |
-| Push a geochemistry dataset through the API | [Upload geochemistry via API](03_writing-data/upload-geochemistry-data/upload-via-api/) |
+| Load many records at once | [Batch upload via API](03_contributing-data/batch-upload-via-api/) |
+| Change records that already exist | [Update data](03_contributing-data/update-data/) |
+| Understand what a geochem field actually means | [Geochemistry data model](04_data-models/geochemistry/) |
+| Prepare a lab export before uploading it | [Preparing geochemistry data](03_contributing-data/upload-geochemistry-data/) |
+| Push a geochemistry dataset through the API | [Upload geochemistry via API](03_contributing-data/upload-geochemistry-data/upload-via-api/) |
 
 ---
 

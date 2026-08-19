@@ -30,7 +30,7 @@ Typical ways a package is writable:
 ## Practical consequences
 
 - Put each import into a package you can write (often a dedicated package for that load).
-- **Updating** a record requires a writable package. Moving a record to another package requires write access to **both** the current and the destination package — see [`03_writing-data/update-data/`](../03_writing-data/update-data/).
+- **Updating** a record requires a writable package. Moving a record to another package requires write access to **both** the current and the destination package — see [`03_contributing-data/update-data/`](../03_contributing-data/update-data/).
 - Child records (concentrations, etc.) inherit the parent’s package rules: if the analysis is not in a writable package, you cannot change its children.
 - Rejection messages often look like *Package is not writable by user* — ask your package admin for editor access, or use another package.
 
