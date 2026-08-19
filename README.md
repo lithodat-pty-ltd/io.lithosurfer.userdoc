@@ -117,6 +117,7 @@ Follow these unless the user explicitly overrides them.
 | **Use `label\\session-id` names** | Required by batch create, unique within the batch and globally. Use a fresh session-id per run. |
 | **Dry-run large loads** | Send a small slice first, verify it in the UI, then send the rest. Batches are all-or-nothing, up to 10,000 items. |
 | **Report honestly** | Give counts sent vs. IDs returned, and surface the raw error text on failure. |
+| **Never run requests in parallel** | Send API calls one after another, not concurrently. Parallel requests hurt server performance. |
 
 ---
 
