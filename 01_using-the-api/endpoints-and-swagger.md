@@ -19,11 +19,26 @@ Most domain entities follow the same shape (example: geochem data point):
 | Create one | `POST /api/…/Entity` | No `id` on the body |
 | Create many | `POST /api/…/Entity/batch` | See [batch upload via API](../03_contributing-data/batch-upload-via-api/) |
 | Update one | `PUT /api/…/Entity` | Body must include existing `id` — see [update data](../03_contributing-data/update-data/) |
-| Get / search | `GET` or `POST …/post` with criteria | Often paged (`page`, `size`) — see [`02_consuming-data/`](../02_consuming-data/) when guides exist |
-| Count | `GET …/count` | Same criteria idea |
-| Delete | `DELETE /api/…/Entity/{id}` | Package must be writable |
+| Get / search | `GET` or `POST …/post` with criteria | Often paged (`page`, `size`); deleted records are omitted — see [delete](#delete) |
+| Count | `GET …/count` | Same criteria idea; deleted records are omitted |
+| Delete | `DELETE /api/…/Entity/{id}` | Package must be writable — see [delete](#delete) |
 
 There is generally **no** bulk-update batch endpoint — `…/batch` is for **create** only.
+
+## Delete
+
+Deleted records disappear from the UI and from list, search and count. For ordinary use that is the whole of it.
+
+The row is stamped (`deletedTimestamp`) rather than physically dropped, which only matters if you look past the API:
+
+| Consequence | What to do |
+|---|---|
+| Names of remaining records must stay unique | A deleted name can be reused. Two undeleted samples (or data points) still cannot share a name — see [batch upload](../03_contributing-data/batch-upload-via-api/) |
+| Counts look high in SQL | Filter `deleted_timestamp IS NULL` (DTO field `deletedTimestamp`) |
+| Updates of deleted rows fail | You cannot PUT a record whose `deletedTimestamp` is set |
+| Direct GET by id | May still return the stamped row. Confirm against Swagger for your entity |
+
+Not every table uses this pattern — confirm `deletedTimestamp` on the DTO in Swagger before relying on it.
 
 ## Auth
 

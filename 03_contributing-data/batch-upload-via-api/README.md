@@ -39,9 +39,9 @@ Examples: `SITE-001\\20260810-import`, `DP-SITE-001\\20260810-import`
 | Rule | Why |
 |---|---|
 | Labels unique **within** a batch | Otherwise the returned name→id map overwrites silently |
-| Full names unique **globally** (including soft-deleted rows) | Re-imports need a new session-id |
+| Full names unique among records that have not been deleted | Deleted names do not block reuse. If the previous run is still present, use a new session-id — see [delete](../../01_using-the-api/endpoints-and-swagger.md#delete) |
 | Same session-id for one run | Keeps the batch identifiable |
-| New session-id on re-run | Avoids collisions |
+| New session-id on re-run while the previous rows are still present | Avoids collisions with existing names |
 
 If the separator is missing, the API rejects the batch.
 
