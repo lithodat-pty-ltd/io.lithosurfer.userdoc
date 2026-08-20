@@ -10,6 +10,7 @@ These checks do not replace mapping digestion and quantitation. They catch value
 |---|---|
 | What the fields mean | [Geochemistry](./) |
 | Shaping an export for upload | [Preparing geochemistry data](../../03_contributing-data/upload-geochemistry-data/) |
+| Per-analyte thresholds (working draft) | [Concentration thresholds](thresholds.md) |
 
 ---
 
@@ -42,6 +43,8 @@ SiO₂ + TiO₂ + Al₂O₃ + Fe₂O₃(T) + MnO + MgO + CaO + Na₂O + K₂O + 
 ```
 
 A total analysis lands near 100 wt%. Flag outside roughly **97–103**. A sum far below 90 means the majors are incomplete or the digest was partial.
+
+The circulating Total rule on [Concentration thresholds](thresholds.md) is different: **warning** outside **90–105 wt%**, **fatal** above **130 wt%**. That page is the working source of truth until experts pick one band.
 
 This check needs no method metadata, which makes it the one test that still works when digestion is missing.
 

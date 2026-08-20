@@ -8,6 +8,7 @@ The practical steps for getting a geochemistry dataset ready to load — how to 
 |---|---|
 | What the fields mean, digestion and quantitation vocabularies | [Geochemistry data model](../../04_data-models/geochemistry/) |
 | Sentinels, oxide closure, unit conversion, spectrography fingerprint | [Quality checks](../../04_data-models/geochemistry/quality-checks.md) |
+| Per-analyte warning/fatal limits (working draft) | [Concentration thresholds](../../04_data-models/geochemistry/thresholds.md) |
 | Sample → data point → concentrations | [Data hierarchy](../../01_using-the-api/data-hierarchy.md) |
 | Writable packages / access | [Packages and access](../../01_using-the-api/packages-and-access.md) |
 | General batch rules | [Batch upload via API](../batch-upload-via-api/) |
