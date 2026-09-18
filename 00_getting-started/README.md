@@ -194,7 +194,18 @@ Three habits worth keeping:
 
 ---
 
+## Before starting a write task
+
+Make sure the agent knows:
+
+- **Server / Swagger URL** — paths and DTO fields are version-specific.
+- **How the script will authenticate** — use the local credentials configured in step 3; do not paste secrets into chat.
+- **Target data package ID** — confirm it is writable and not FINISHED or FROZEN.
+- **Source data and column meanings** — labels must be mapped, not assumed.
+
 ## What the agent should know
+
+Have it read the [ground rules for agents](../01_using-the-api/README.md#ground-rules-for-agents) before making API requests.
 
 Point it at these once it is running:
 

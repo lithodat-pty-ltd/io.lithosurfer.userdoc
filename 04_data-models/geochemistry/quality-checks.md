@@ -11,6 +11,7 @@ These checks do not replace mapping digestion and quantitation. They catch value
 | What the fields mean | [Geochemistry](./) |
 | Shaping an export for upload | [Preparing geochemistry data](../../03_contributing-data/upload-geochemistry-data/) |
 | Per-analyte thresholds (working draft) | [Concentration thresholds](thresholds.md) |
+| Integrating the Atamai plausibility ceilings | [Atamai proposal](thresholds-proposal.md) |
 
 ---
 

@@ -9,6 +9,7 @@ What a geochemistry record in LithoSurfer / EarthBank represents, and which meta
 | Preparing a lab export for upload | [Upload geochemistry data](../../03_contributing-data/upload-geochemistry-data/) |
 | Quality checks before load | [Quality checks](quality-checks.md) |
 | Per-analyte thresholds (working draft) | [Concentration thresholds](thresholds.md) |
+| Integrating the Atamai plausibility ceilings | [Atamai proposal](thresholds-proposal.md) |
 | The batch upload pipeline | [Upload via API](../../03_contributing-data/upload-geochemistry-data/upload-via-api/) |
 | Resolving vocabulary names to IDs | [Reference lists](../../01_using-the-api/reference-lists.md) |
 
@@ -218,4 +219,5 @@ Error types resolve against `/api/core/l-error-types` and reference materials ag
 - Preparing a spreadsheet for upload: [Upload geochemistry data](../../03_contributing-data/upload-geochemistry-data/)
 - Quality checks (sentinels, closure, spectrography fingerprint): [Quality checks](quality-checks.md)
 - Per-analyte thresholds (working draft for expert review): [Concentration thresholds](thresholds.md)
+- Integrating the Atamai plausibility ceilings (proposal): [Atamai proposal](thresholds-proposal.md)
 - The batch pipeline with payloads: [Upload via API](../../03_contributing-data/upload-geochemistry-data/upload-via-api/)
