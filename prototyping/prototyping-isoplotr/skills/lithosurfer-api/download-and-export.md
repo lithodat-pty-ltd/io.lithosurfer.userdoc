@@ -57,12 +57,14 @@ CSV:
 
 ```bash
 node .cursor/skills/lithosurfer-api/scripts/call-api.js \
-  POST "/api/core/sample-with-locations/download/post?format=csv" \
+  POST "/api/core/sample-with-locations/download/csv" \
   --body '{ …same criteria… }' \
   --raw
 ```
 
 (`--raw` keeps binary/text bodies intact when not JSON.)
+
+Excel is the same body posted to `/download/excel` (xlsx). Shapefile is `/download/shapefile` (zip with `.shp/.shx/.dbf/.prj`, WGS84 points, map attributes rather than the CSV columns). GeoJSON is `/download/geojson` (`FeatureCollection`, WGS84 points, same attributes as the shapefile). Each format is a separate endpoint.
 
 Optional `blacklist` query param: list of column names to omit from raw rows.
 
@@ -92,7 +94,7 @@ Example — elemental concentrations for known GC ids (chunk if many):
 
 ```bash
 node .cursor/skills/lithosurfer-api/scripts/call-api.js \
-  POST "/api/geochem/ElementalConcentration/download/post?format=csv" \
+  POST "/api/geochem/ElementalConcentration/download/csv" \
   --body '{ "gCDataPointId": { "in": [99001, 99002, 99003] } }' \
   --raw
 ```

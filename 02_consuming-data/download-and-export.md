@@ -56,7 +56,7 @@ If the count is at or below 50,000:
 }
 ```
 
-For CSV, use `?format=csv` on the same endpoint and body — the response body is text, not JSON.
+For CSV, POST the same body to `/download/csv` on that resource — the response body is text, not JSON. Excel is `/download/excel` and returns an xlsx workbook. Shapefile is `/download/shapefile` and returns a zip (`.shp/.shx/.dbf/.prj`, WGS84 points) with map attributes rather than the CSV columns. GeoJSON is `/download/geojson` and returns a `FeatureCollection` (`.geojson`, WGS84 points) with the same map attributes as the shapefile.
 
 An optional `blacklist` query parameter takes a list of column names to omit from the raw rows.
 
@@ -85,7 +85,7 @@ Example — geochemistry data points in a package:
 
 Example — elemental concentrations for known GC data-point ids (chunk if there are many):
 
-**Endpoint:** `POST /api/geochem/ElementalConcentration/download/post?format=csv`
+**Endpoint:** `POST /api/geochem/ElementalConcentration/download/csv`
 
 ```json
 { "gcdataPointId": { "in": [99001, 99002, 99003] } }
