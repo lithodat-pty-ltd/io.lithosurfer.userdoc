@@ -38,11 +38,10 @@ Exact request/response shapes change with server version — always confirm fiel
 
 ## Ground rules for agents
 
-Read these before making API requests. Follow them unless the user explicitly overrides them.
+Read these before making API requests. Follow them unless the user explicitly overrides them. They apply to every agent, including the Lithodata assistant in the web application.
 
 | Rule | Detail |
 |---|---|
-| **This repository is read-only** | It is reference material with an upstream the user pulls from. Write scripts, data and outputs into the user's own working folder. If you were not told which folder that is, ask before creating any file. Editing documentation is the exception when the user explicitly requests it. |
 | **Verify against Swagger** | Confirm paths and DTO fields for the user's server before sending. DTOs change between versions; do not trust example payloads verbatim. |
 | **Never invent IDs** | Resolve every lookup against the live reference list. Do not guess `lElementId`, `digestionCategoryId`, or a data package ID. |
 | **Never invent data** | No fabricated detection limits, no converting a partial digest to a "total", no filling blank fields with plausible values. Flag gaps to the user instead. |
@@ -53,6 +52,16 @@ Read these before making API requests. Follow them unless the user explicitly ov
 | **Dry-run large loads** | Send a small slice first, verify it in the UI, then send the rest. Batches are all-or-nothing, up to 10,000 items. |
 | **Report honestly** | Give counts sent vs. IDs returned, and surface the raw error text on failure. |
 | **Never run requests in parallel** | Send API calls one after another, not concurrently. Parallel requests hurt server performance. |
+
+### Local agents working from a copy of this repository
+
+These apply when an agent runs on the user's machine with this repository checked out. The Lithodata assistant in the web application has no working folder and skips them.
+
+| Rule | Detail |
+|---|---|
+| **This repository is read-only** | It is reference material with an upstream the user pulls from. Editing documentation is the exception when the user explicitly requests it. |
+| **Work in the user's folder** | Write scripts, data and outputs into the user's own working folder. If you were not told which folder that is, ask before creating any file. |
+| **Keep credentials out of chat** | Read the login from the user's `.env`; never ask for a password in the conversation. See [Getting started](../00_getting-started/). |
 
 ---
 

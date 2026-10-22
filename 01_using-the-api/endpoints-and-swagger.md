@@ -79,4 +79,6 @@ Paths are grouped by domain, for example:
 - `/api/geochem/…` — geochemistry  
 - `/api/upb/…`, `/api/fissiontrack/…`, `/api/helium/…`, … — other methods  
 
+Path casing is mixed (`sample-with-locations`, `GCDataPoint`, `LElement`). Copy each path from Swagger rather than guessing it.
+
 Hierarchy and example paths: [data hierarchy](data-hierarchy.md).
