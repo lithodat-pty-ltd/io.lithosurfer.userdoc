@@ -60,7 +60,7 @@ Every item above is a mistake that is expensive to correct after loading. The re
 
 | Path | When to use | Doc |
 |---|---|---|
-| **Excel / table wizard** in the UI | Moderate volumes; interactive mapping | Ask Lithodat for the current geochem template |
+| **Excel / table wizard** in the UI | Moderate volumes; interactive mapping | [Upload via an Excel template](../upload-via-excel-template/) |
 | **Batch REST API** | Large volumes (thousands+); repeatable loads | [upload-via-api](upload-via-api/README.md) |
 
 Both paths need the same preparation. The API only changes *how* records are sent.

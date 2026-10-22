@@ -8,6 +8,8 @@ Your source data uses labels (`Zr`, `Near-total`, `Aqua Regia`). The API stores 
 2. Build `{ name or symbol → id }` in memory.  
 3. Put the id on the DTO field (`lElementId`, `digestionCategoryId`, …).
 
+Use the **core** list paths, under `/api/core/l-…` (for example `l-sample-kinds`, `l-sample-methods`, `l-location-kinds`, `l-countries`, `l-celestials`). The same names at the top level, `/api/l-…`, are admin-only and will refuse a normal account. Confirm the exact path in Swagger — casing is part of the path (`LElement` and `l-sample-kinds` are both real).
+
 Many DTOs expose a pair: `…Id` for writing and `…Name` for reading back.
 
 ## Common lists

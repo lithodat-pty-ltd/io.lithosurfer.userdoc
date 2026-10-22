@@ -10,3 +10,4 @@ General API background (hierarchy, packages, Swagger, reference lists) lives in 
 | [Create data packages](create-datapackages/) | Setting up packages to write into |
 | [Update data](update-data/) | Changing existing records (PUT); writable-package rules |
 | [Upload geochemistry data](upload-geochemistry-data/) | Preparing geochem + geochem batch pipeline |
+| [Upload via an Excel template](upload-via-excel-template/) | Filling a wizard workbook and fixing the errors that block it |

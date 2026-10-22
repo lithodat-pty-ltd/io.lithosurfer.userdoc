@@ -25,6 +25,31 @@ Most domain entities follow the same shape (example: geochem data point):
 
 There is generally **no** bulk-update batch endpoint — `…/batch` is for **create** only.
 
+## Filters, paging and counts
+
+On **GET**, filters are query parameters with a suffix:
+
+| Suffix | Example |
+|---|---|
+| `equals` | `name.equals=SITE-001` |
+| `in` | `id.in=1,2,3` |
+| `contains` | `igsn.contains=ABC` |
+| `greaterThan` | `id.greaterThan=100` |
+| `lessThan` | `id.lessThan=100` |
+| `specified` | `deletedTimestamp.specified=false` |
+
+On **`POST …/post`** the same filters are a JSON body. The body schema is the `<Entity>LithoCriteria` or `<Entity>Criteria` definition in Swagger:
+
+```json
+{ "igsn": { "contains": "ABC" }, "id": { "in": [1, 2, 3] } }
+```
+
+`POST …/post` is a search. It does not create a record.
+
+Set **`allowedAccess`** on list and search calls (`VIEWABLE`, `WRITEABLE`, `PREVIEWABLE`, `VIEWABLE_AND_PREVIEWABLE`). Filtering by `dataPackageId` alone does not bypass access checks — a package you cannot see comes back as an empty list. See [Packages and access](packages-and-access.md) and [Consuming data](../02_consuming-data/).
+
+Paging uses `page` (0-based), `size`, and `sort=field,asc` or `sort=field,desc`. The **`X-Total-Count`** response header is the total number of matching rows, not the size of the current page. Keep `size` small and narrow the filter rather than walking every page.
+
 ## Delete
 
 Deleted records disappear from the UI and from list, search and count. For ordinary use that is the whole of it.

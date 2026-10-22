@@ -27,6 +27,22 @@ Typical ways a package is writable:
 | **FINISHED** | No |
 | **FROZEN** | No |
 
+An **IN_PROGRESS** package is normally visible only to its team, even when its distribution would otherwise be wider.
+
+## Distribution
+
+Distribution controls who may see the package besides the people granted access on it:
+
+| Distribution | Who can see it without a further grant |
+|---|---|
+| `PUBLIC` | Anyone, including people who are not logged in |
+| `COMMUNITY` | Members of an institution in the package's community |
+| `COMMERCIAL` | Users who hold a licence for it |
+| `PRIVATE` | Only the package's team |
+| `HIDDEN` | Only an administrator or the package owner |
+
+Workflow state still applies. A **FINISHED** or **FROZEN** package cannot be edited, whatever its distribution.
+
 ## Practical consequences
 
 - Put each import into a package you can write (often a dedicated package for that load).

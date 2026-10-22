@@ -12,6 +12,7 @@ to your data packages.
 ## Find your guide
 
 - **Prepare and upload geochemistry:** [Geochemistry upload guide](03_contributing-data/upload-geochemistry-data/)
+- **Upload an Excel template:** [Excel template guide](03_contributing-data/upload-via-excel-template/)
 - **Upload records in bulk:** [Batch API guide](03_contributing-data/batch-upload-via-api/)
 - **Change existing records:** [Update data](03_contributing-data/update-data/)
 - **Find, filter, or export existing data:** [Consuming data](02_consuming-data/)
