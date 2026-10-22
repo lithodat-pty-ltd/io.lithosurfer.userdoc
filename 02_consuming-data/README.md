@@ -23,3 +23,5 @@ Every read goes through the same access-control layer as writes. Set **`allowedA
 4. Filter by parent id, region, or package as needed
 5. Prefer findIds + hydrate, or /download/post, over walking huge paginated pages
 ```
+
+**More than a couple hundred samples, data points, or data-point children?** Use the resource's raw download service (`…/download/post`) instead of paging — see [Download and export](download-and-export.md#rule-for-agents-more-than-a-couple-hundred-rows--raw-download).

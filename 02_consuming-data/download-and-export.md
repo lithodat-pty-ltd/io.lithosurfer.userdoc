@@ -10,6 +10,16 @@ Pulling larger result sets without paging through UI-sized lists — raw rows, C
 
 ---
 
+## Rule for agents: more than a couple hundred rows → raw download
+
+When you fetch **samples, data points, or data-point children** (concentrations, spots, track lengths, …) and the count is more than a couple hundred rows (roughly **above 200**), do not page through the list endpoint. Look for the resource's raw download service instead:
+
+1. **Count first** with `POST …/count/post` and the same criteria.
+2. **Find the download operation** for that resource in Swagger — usually `POST …/download/post` (flat JSON rows). Prefer it over `…/download/csv` / `…/download/excel` when you will process the rows yourself.
+3. **Download with the same criteria** in one request (up to 50,000 rows — see the limit below). For children, filter by the parent ids, e.g. `gcdataPointId.in`.
+
+Page through `…/post?page=&size=` only for small results, or when the resource has no download operation. Paging a large list costs one request per page and returns typed DTOs that are much bigger than the flat raw rows.
+
 ## Endpoint roles
 
 | Endpoint | Returns | Use when |
