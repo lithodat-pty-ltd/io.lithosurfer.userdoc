@@ -1,19 +1,19 @@
 # Licensing
 
-A **data licence** states the terms under which a package's content may be reused. It is a catalogue entry, `DataLicense`, linked from the package.
+A **data licence** states the terms under which a package's content may be reused. The catalogue of those licences is `DataLicense`.
 
 Who may see a package is [distribution](../01_using-the-api/packages-and-access.md). Who may change the licence linked to a package is in [Managing packages](README.md).
 
-## On the package
+## Relationship
 
-A package carries its reuse terms in two fields.
+Packages and data licences meet in both directions. There is no join table.
 
-| Field on `DataPackage` | Role |
+| Direction | How it is stored |
 |---|---|
-| `license` (`licenseId` on the API) | One structured licence, chosen from the `DataLicense` catalogue |
-| `licenseText` | Free text. Several licences can be written in one value, with a blank line between them |
+| One `DataLicense`, many packages | `data_package.license_id` references `data_license.id`. Any number of packages can link the same catalogue entry. Each package has at most one such link (`license` on the entity, `licenseId` on the API). |
+| One package, many licences | That one catalogue link, plus `licenseText`. `licenseText` holds further licences as plain text, with a blank line between them. Those blocks are not further rows pointing at `DataLicense`. |
 
-Many packages may point at the same catalogue entry. A new package starts with `licenseText` set to "Creative Commons" and with no catalogue entry linked.
+A new package starts with `licenseText` set to "Creative Commons" and with no catalogue entry linked.
 
 ## Catalogue entry
 
