@@ -4,6 +4,7 @@ Use `POST …/batch` when **creating** many rows at once. This is typically far 
 
 | Related | Doc |
 |---|---|
+| Getting a contributor's file ready first | [Prepare data for an API upload](../prepare-data-for-upload/) |
 | Hierarchy, packages, Swagger, lookups | [`01_using-the-api/`](../../01_using-the-api/) |
 | Writable packages | [Packages and access](../../01_using-the-api/packages-and-access.md) |
 | Geochem-specific pipeline | [Upload geochemistry via API](../upload-geochemistry-data/upload-via-api/) |
@@ -20,9 +21,28 @@ Exact DTO fields: **Swagger UI** for your server.
 | Max size | **10,000** items per request (prefer 2,000–5,000) |
 | Transaction | The whole batch succeeds or fails together |
 | New rows only | Every DTO must have `id` null / omitted |
-| Package | Content must go to a **writable** package ([packages and access](../../01_using-the-api/packages-and-access.md)) |
+| Package | Content must go to a **writable** package ([packages and access](../../01_using-the-api/packages-and-access.md)); for a new upload, a new empty one ([below](#upload-into-a-new-package-first)) |
 | Same package | Some batch endpoints require every item in the call to share one `dataPackageId` (e.g. GC data points) |
 | Order | Create parents before children ([data hierarchy](../../01_using-the-api/data-hierarchy.md)) |
+
+---
+
+## Upload into a new package first
+
+Load a new upload into a **new, empty data package** created for it, not straight into an existing one. The batch API is transactional per request, not per upload; a separate package makes the whole upload behave more like one transaction:
+
+- **Everything from the run is in one place.** It is easy to count, check in the UI, and show to whoever owns the data.
+- **A failed or wrong upload is easy to undo.** Nothing else lives in that package, so cleaning up cannot touch existing data.
+- **Existing packages stay untouched** until the upload has been checked.
+
+Once the upload is checked and signed off, merge it into the target package by moving the records. Moving needs write access to both packages, and the target must not be **FINISHED** or **FROZEN** ([packages and access](../../01_using-the-api/packages-and-access.md)):
+
+| Move | Endpoint | Body |
+|---|---|---|
+| Samples | `POST /api/core/sample-with-locations/move` | `{ "ids": [<sample ids>], "targetPackageId": 123 }` |
+| Data points | `POST /api/<method>/<Method>DataPoint/move`, e.g. `/api/geochem/GCDataPoint/move` | `{ "ids": [<method data-point ids>], "targetPackageId": 123 }` |
+
+Moving samples does **not** move their data points: move both. Measurements (concentrations, spots, …) follow their data point. Confirm the paths in Swagger.
 
 ---
 
@@ -35,6 +55,8 @@ Sample and data-point names used with batch create must contain a double backsla
 ```
 
 Examples: `SITE-001\\20260810-import`, `DP-SITE-001\\20260810-import`
+
+The postfix starting with `\\` keeps names unique across uploads. Most display components hide `\\` and everything after it, so users see the original label (`SITE-001`).
 
 | Rule | Why |
 |---|---|
