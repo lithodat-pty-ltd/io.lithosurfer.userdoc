@@ -52,4 +52,5 @@ Moving a package out of `PRIVATE` requires the acting user to belong to an insti
 ## Related
 
 - Lifecycle, roles, workflow, licence, DOI, and deletion: [Managing packages](README.md)
+- Metadata and checks expected of a curated EarthBank package: [EarthBank curation requirements](earthbank-curation.md)
 - Who can see a package: [Packages and access](../01_using-the-api/packages-and-access.md)

@@ -8,6 +8,7 @@ These pages describe the rules the server enforces. They do not describe a parti
 |---|---|
 | This page | Package lifecycle, team roles, workflow, DOI, and deletion |
 | [Curation](curation.md) | Asking for review, the curator's decision, and publishing |
+| [EarthBank curation requirements](earthbank-curation.md) | Metadata and checks expected of a curated EarthBank package |
 | [Licensing](licensing.md) | The `DataLicense` catalogue entry linked from a package |
 
 ## Package settings
