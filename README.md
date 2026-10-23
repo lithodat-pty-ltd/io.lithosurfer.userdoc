@@ -18,6 +18,7 @@ to your data packages.
 - **Find, filter, or export existing data:** [Consuming data](02_consuming-data/)
 - **Understand the API or troubleshoot access:** [Using the API](01_using-the-api/)
 - **Understand analytical fields and measurements:** [Data models](04_data-models/)
+- **Manage, review, or publish a package:** [Managing packages](05_managing-packages/)
 
 ## Working with an AI assistant
 

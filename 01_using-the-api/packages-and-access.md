@@ -16,8 +16,8 @@ You may still *see* packages you cannot edit (e.g. public or shared data).
 
 Typical ways a package is writable:
 
-- You are an **editor** or **supervisor** on the package team, or  
-- You have a **curator** role covering that package’s institution  
+- You are an **editor** or **supervisor** on the package team, or
+- You are a **curator** of the owning institution and the package is waiting for curation
 
 …and the package is not locked:
 
@@ -27,7 +27,7 @@ Typical ways a package is writable:
 | **FINISHED** | No |
 | **FROZEN** | No |
 
-An **IN_PROGRESS** package is normally visible only to its team, even when its distribution would otherwise be wider.
+Who can see a package follows its **distribution**. Workflow state decides whether the content can still be changed. How a package is managed, reviewed, and published is in [Managing packages](../05_managing-packages/).
 
 ## Distribution
 
@@ -39,7 +39,7 @@ Distribution controls who may see the package besides the people granted access 
 | `COMMUNITY` | Members of an institution in the package's community |
 | `COMMERCIAL` | Users who hold a licence for it |
 | `PRIVATE` | Only the package's team |
-| `HIDDEN` | Only an administrator or the package owner |
+| `HIDDEN` | Anyone with a direct link (for example a DOI). Omitted from public discovery. The package team can still find it, and an institution curator can still find it while it is waiting for curation |
 
 Workflow state still applies. A **FINISHED** or **FROZEN** package cannot be edited, whatever its distribution.
 

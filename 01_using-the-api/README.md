@@ -8,6 +8,7 @@ General information for working with LithoSurfer / EarthBank through the REST AP
 | Query / download workflows | [`02_consuming-data/`](../02_consuming-data/) |
 | Create, batch upload, update | [`03_contributing-data/`](../03_contributing-data/) |
 | What each analytical method records | [`04_data-models/`](../04_data-models/) |
+| Manage, review, or publish a package | [`05_managing-packages/`](../05_managing-packages/) |
 
 Exact request/response shapes change with server version — always confirm field names in **Swagger UI** for your host.
 
