@@ -162,7 +162,7 @@ Geochemistry has its own pipeline and lookups: [upload geochemistry via API](../
 
 ---
 
-## Checking a file with the Lithodata assistant
+## Checking a file with the LithoSurfer AI Chat
 
 Attach the file in the chat and say what it is and where it should go. The assistant works through the steps above with you:
 

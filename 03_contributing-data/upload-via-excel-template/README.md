@@ -1,6 +1,6 @@
 # Upload via an Excel template
 
-Load data by filling a LithoSurfer Excel template and uploading that workbook in the **EarthBank upload wizard**. You choose the data package in the wizard. The file itself does not have to name it. This page also explains every [problem code](#problem-codes) a file check reports, and how the Lithodata assistant [helps fix a file](#checking-a-file-with-the-lithodata-assistant).
+Load data by filling a LithoSurfer Excel template and uploading that workbook in the **EarthBank upload wizard**. You choose the data package in the wizard. The file itself does not have to name it. This page also explains every [problem code](#problem-codes) a file check reports, and how the LithoSurfer AI Chat [helps fix a file](#checking-a-file-with-the-lithosurfer-ai-chat).
 
 This is the interactive path. For a large, repeatable load, use the [batch API](../batch-upload-via-api/) instead. Geochemistry still needs the [preparation guide](../upload-geochemistry-data/) either way.
 
@@ -46,7 +46,7 @@ Fix the sheet structure first (missing sheets, headers, the empty row that trunc
 2. Fill it, following the rules above.
 3. Upload the workbook in the wizard and select the target data package.
 
-If you ask the Lithodata assistant to check an attached workbook, it can explain these problems and hand back a corrected copy. It does not load the data. You still upload the file in the wizard.
+If you ask the LithoSurfer AI Chat to check an attached workbook, it can explain these problems and hand back a corrected copy. It does not load the data. You still upload the file in the wizard.
 
 ---
 
@@ -86,7 +86,7 @@ Errors about the data-package column and the `Tag` column are expected before up
 
 ---
 
-## Checking a file with the Lithodata assistant
+## Checking a file with the LithoSurfer AI Chat
 
 Attach the `.xlsx` in the chat and ask the assistant to check it. It works through the file like a careful data curator:
 

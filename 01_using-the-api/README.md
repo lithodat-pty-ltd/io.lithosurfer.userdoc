@@ -38,7 +38,7 @@ Exact request/response shapes change with server version — always confirm fiel
 
 ## Ground rules for agents
 
-Read these before making API requests. Follow them unless the user explicitly overrides them. They apply to every agent, including the Lithodata assistant in the web application.
+Read these before making API requests. Follow them unless the user explicitly overrides them. They apply to every agent, including the LithoSurfer AI Chat in the web application.
 
 | Rule | Detail |
 |---|---|
@@ -55,7 +55,7 @@ Read these before making API requests. Follow them unless the user explicitly ov
 
 ### Local agents working from a copy of this repository
 
-These apply when an agent runs on the user's machine with this repository checked out. The Lithodata assistant in the web application has no working folder and skips them.
+These apply when an agent runs on the user's machine with this repository checked out. The LithoSurfer AI Chat in the web application has no working folder and skips them.
 
 | Rule | Detail |
 |---|---|
