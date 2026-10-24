@@ -14,7 +14,7 @@ Pulling larger result sets without paging through UI-sized lists — raw rows, C
 
 When you fetch **samples, data points, or data-point children** (concentrations, spots, track lengths, …) and the count is more than a couple hundred rows (roughly **above 200**), do not page through the list endpoint. Look for the resource's raw download service instead:
 
-1. **Count first** with `POST …/count/post` and the same criteria.
+1. **Count first** with `POST …/count/post` and the same criteria. To count data points inside packages, without downloading them, use [Count data points in packages](count-package-contents.md) instead.
 2. **Find the download operation** for that resource in Swagger — usually `POST …/download/post` (flat JSON rows). Prefer it over `…/download/csv` / `…/download/excel` when you will process the rows yourself.
 3. **Download with the same criteria** in one request (up to 50,000 rows — see the limit below). For children, filter by the parent ids, e.g. `gcdataPointId.in`.
 
