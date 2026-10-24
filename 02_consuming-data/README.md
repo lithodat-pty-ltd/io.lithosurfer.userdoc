@@ -1,16 +1,16 @@
 # Consuming data
 
-Guides for **finding, filtering, and exporting** data already in LithoSurfer / EarthBank, through the REST API.
+Guides for **finding, filtering, and exporting scientific data** already in LithoSurfer / EarthBank: samples, data points, and their measurements.
 
-General API background (hierarchy, packages, Swagger, reference lists) lives in [`01_using-the-api/`](../01_using-the-api/). This folder is for read/query workflows specifically.
+Finding a package, counting what it holds, and downloading it as one ZIP are in [Package catalogue](../05_managing-packages/catalogue/).
+
+General API background (hierarchy, packages, Swagger, reference lists) lives in [`01_using-the-api/`](../01_using-the-api/). This folder is for reading scientific records.
 
 | Guide | Topic |
 |---|---|
 | [Navigating and hydrating](navigating-and-hydrating.md) | Filtering by sample/parent id, expanding ids to full records, identifiers you can query by, soft-deleted rows |
 | [Geographic queries](geographic-queries.md) | Region filters, fitting a map to a selection, GeoJSON, clusters |
-| [Find data packages](find-packages.md) | The package catalogue: search, kind of data, team, and the package total |
-| [Count data points in packages](count-package-contents.md) | Per-package counts by method, plus sample and file counts |
-| [Download and export](download-and-export.md) | Raw rows, CSV/JSON export, the 50,000-row limit, shapefiles |
+| [Download and export](download-and-export.md) | A selection of rows: CSV/JSON, the 50,000-row limit, shapefiles |
 
 ## Ground rule
 

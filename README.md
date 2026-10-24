@@ -15,10 +15,10 @@ to your data packages.
 - **Upload an Excel template:** [Excel template guide](03_contributing-data/upload-via-excel-template/)
 - **Upload records in bulk:** [Batch API guide](03_contributing-data/batch-upload-via-api/)
 - **Change existing records:** [Update data](03_contributing-data/update-data/)
-- **Find, filter, or export existing data:** [Consuming data](02_consuming-data/)
+- **Find, filter, or export samples and data points:** [Consuming data](02_consuming-data/)
 - **Understand the API or troubleshoot access:** [Using the API](01_using-the-api/)
 - **Understand analytical fields and measurements:** [Data models](04_data-models/)
-- **Manage, review, or publish a package:** [Managing packages](05_managing-packages/)
+- **Find, download, review, or publish a package:** [Managing packages](05_managing-packages/)
 
 ## Working with an AI assistant
 

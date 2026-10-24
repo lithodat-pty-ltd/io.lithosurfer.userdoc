@@ -27,7 +27,7 @@ Hydration stays off (`hydrateDTO` defaults to false). The list does not need eac
 | GCMD keyword, ANZSRC field of research | `vocabIdGCMD.in`, `vocabIdFOR.in` |
 | Provenance | `provenanceType.equals` — `CANONICAL`, `REPLICATED`, `COMPILATION` |
 | Packages with samples in a country | `sampleLithoCriteria.locationCriteria.countryId.equals` |
-| Packages with data in a region | `hasDataInRegion` — see [Geographic queries](geographic-queries.md) |
+| Packages with data in a region | `hasDataInRegion` — see [Geographic queries](../../02_consuming-data/geographic-queries.md) |
 
 On GET these are query parameters (`hasDataStructure=TH`, `distribution.equals=PUBLIC`). On `POST …/post` they are fields of `DataPackageLithoCriteria`.
 

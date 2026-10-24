@@ -10,6 +10,7 @@ These pages describe the rules the server enforces. They do not describe a parti
 | [Curation](curation.md) | Asking for review, the curator's decision, and publishing |
 | [EarthBank curation requirements](earthbank-curation.md) | Metadata and checks expected of a curated EarthBank package |
 | [Licensing](licensing.md) | The `DataLicense` catalogue entry linked from a package |
+| [Catalogue](catalogue/) | Finding packages, counting what they contain, and downloading the package ZIP |
 
 ## Package settings
 
@@ -96,4 +97,5 @@ A supervisor may delete a package that is `PRIVATE` and has no DOI. The package,
 - Who can see a package: [Packages and access](../01_using-the-api/packages-and-access.md)
 - Review and publication: [Curation](curation.md)
 - Data licence: [Licensing](licensing.md)
+- Finding, counting, and downloading a package: [Catalogue](catalogue/)
 - Changing records inside a writable package: [Update data](../03_contributing-data/update-data/)

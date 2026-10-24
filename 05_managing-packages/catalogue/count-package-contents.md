@@ -4,7 +4,7 @@ How many data points, of which analytical method, are in one or more data packag
 
 The package catalogue answers this with one count call for every package on the page. It does not load the data points.
 
-To pull the rows themselves, use [Download and export](download-and-export.md).
+To download the package as one ZIP, use [Download a data package](download-package.md). To pull selected rows, use [Download and export](../../02_consuming-data/download-and-export.md).
 
 ## Service
 

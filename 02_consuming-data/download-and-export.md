@@ -4,9 +4,12 @@ Pulling larger result sets without paging through UI-sized lists — raw rows, C
 
 | Related | Doc |
 |---|---|
+| A whole package as one ZIP | [Download a data package](../05_managing-packages/catalogue/download-package.md) |
 | Filtering by parent/child id, hydration | [Navigating and hydrating](navigating-and-hydrating.md) |
 | Region filters | [Geographic queries](geographic-queries.md) |
 | Access scoping | [Packages and access](../01_using-the-api/packages-and-access.md) |
+
+This page exports a **selection of rows**. The catalogue's Download button on a package does not use these calls. It downloads a snapshot ZIP — see [Download a data package](../05_managing-packages/catalogue/download-package.md).
 
 ---
 
@@ -14,7 +17,7 @@ Pulling larger result sets without paging through UI-sized lists — raw rows, C
 
 When you fetch **samples, data points, or data-point children** (concentrations, spots, track lengths, …) and the count is more than a couple hundred rows (roughly **above 200**), do not page through the list endpoint. Look for the resource's raw download service instead:
 
-1. **Count first** with `POST …/count/post` and the same criteria. To count data points inside packages, without downloading them, use [Count data points in packages](count-package-contents.md) instead.
+1. **Count first** with `POST …/count/post` and the same criteria. To count data points inside packages, without downloading them, use [Count data points in packages](../05_managing-packages/catalogue/count-package-contents.md) instead.
 2. **Find the download operation** for that resource in Swagger — usually `POST …/download/post` (flat JSON rows). Prefer it over `…/download/csv` / `…/download/excel` when you will process the rows yourself.
 3. **Download with the same criteria** in one request (up to 50,000 rows — see the limit below). For children, filter by the parent ids, e.g. `gcdataPointId.in`.
 
