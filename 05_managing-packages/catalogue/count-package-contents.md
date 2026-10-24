@@ -19,7 +19,9 @@ To download the package as one ZIP, use [Download a data package](download-packa
 }
 ```
 
-`dataPackageIds` is the packages to count. `kinds` is optional. Leave it out to count every method that has data. Pass a list to limit the count to those methods.
+`dataPackageIds` is the packages to count, and it is **required**: without it the answer is empty. `kinds` is optional. Leave it out to count every method that has data. Pass a list to limit the count to those methods.
+
+To count many packages, first get their ids from a package list (for example `GET /api/management/data-packages` with filters; each row carries the id as `dataPackageDTO.id`), then pass all of them in one call. In the LithoSurfer AI Chat, a stored list is passed as a dataset reference instead of copying the ids: `"dataPackageIds": {"fromDataset": "<datasetId>", "column": "dataPackageDTO.id"}`.
 
 Method codes are the `DataStructure` values:
 
