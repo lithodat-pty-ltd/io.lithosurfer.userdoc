@@ -25,7 +25,7 @@ Rules of thumb:
 |---|---|---|---|
 | Package | `data-packages` | `/api/management/data-packages` | 02 Management |
 | Sample + location | `sample-with-locations` | `/api/core/sample-with-locations` | 03 Core Model |
-| Generic data point | (via method resources / hydrate) | `/api/core/hydrate-datapoints-by-id` | 03 Core Model |
+| Generic data point | via the method resource (`GCDataPoint`, `FTDataPoint`, …) | `/api/<method>/<Entity>` | matching method group |
 | Geochem DP | `GCDataPoint` | `/api/geochem/GCDataPoint` | 11 Geochem Data |
 | Geochem children | `ElementalConcentration`, `OxideConcentration` | `/api/geochem/…` | 11 Geochem Data |
 | Fission track DP | `FTDataPoint` | `/api/fissiontrack/FTDataPoint` | 09 Fission Track Data |
@@ -71,29 +71,15 @@ Child FK names vary (`gCDataPointId`, `fTDataPointId`, …). Grep Swagger:
 node .cursor/skills/lithosurfer-api/scripts/search-swagger.js "gCDataPointId" --what defs
 ```
 
-### Expand IDs → rich DTOs (hydration)
+### Known ids
 
-When you already have ids (from `findIds`, map clicks, or a prior search), hydrate instead of re-querying with criteria:
-
-| Endpoint | Expands |
-|---|---|
-| `GET /api/core/hydrate-samples-by-id?sampleIds=1,2,3` | samples + location |
-| `GET /api/core/hydrate-datapoints-by-id?ids=…` | generic data points |
-| `GET /api/core/hydrate-gc-by-id?ids=…` | geochem (with children context) |
-| `GET /api/core/hydrate-fissionTrack-by-id?ids=…` | fission track |
-| `GET /api/core/hydrate-upb-by-id?ids=…` | U-Pb |
-| `GET /api/core/hydrate-he-by-id?ids=…` | helium |
-| `GET /api/core/hydrate-arar-by-id?ids=…` | Ar-Ar |
-| `GET /api/core/hydrate-luhf-by-id?ids=…` | Lu-Hf |
-| `GET /api/core/hydrate-igsn-sample-info?igsn=…` | IGSN landing-style sample info |
-
-Ids are comma-separated query strings.
+Search that entity with `id.in` on `POST …/post` or `POST …/download/post`. Measurements for known parent ids use the child foreign key (`gCDataPointId.in`, and the equivalent on other methods).
 
 ## Identifiers
 
 | Id | Where | Notes |
 |---|---|---|
-| Internal numeric `id` | Every entity | Primary key for hydrate / FK links |
+| Internal numeric `id` | Every entity | Primary key for `id.in` and for foreign keys |
 | `igsn` | Sample | String filter on `sample-with-locations` |
 | `name` | Sample, DataPoint, … | Not globally unique; batch imports uniquify with `\\` |
 | `dataPackageId` | Sample, DataPoint | ACL boundary |

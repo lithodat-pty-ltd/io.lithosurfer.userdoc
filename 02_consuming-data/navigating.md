@@ -1,9 +1,10 @@
-# Navigating and hydrating
+# Navigating records
 
-How to move from a starting point — a sample, a data package, a set of ids — to the records you want, and back out to full nested detail.
+How to move from a starting point — a sample, a data package, a set of ids — to the records you want.
 
 | Related | Doc |
 |---|---|
+| The shared filters | [Search samples and data points](search.md) |
 | Sample → data point → measurements | [Data hierarchy](../01_using-the-api/data-hierarchy.md) |
 | Search operators, `/post` criteria bodies | [Endpoints and Swagger](../01_using-the-api/endpoints-and-swagger.md) |
 | Region filters | [Geographic queries](geographic-queries.md) |
@@ -15,20 +16,20 @@ Set `allowedAccess` on every call — see [Packages and access](../01_using-the-
 
 ## Filter by parent id
 
-Most method search endpoints nest a `dataPointLithoCriteria` (and often a `sampleLithoCriteria`). Filtering by sample id is usually the fastest way to get "everything for this sample" in one method.
+Most method search endpoints nest a `dataPointLithoCriteria` (and often a `sampleLithoCriteria`). Filtering by sample id is usually the fastest way to get everything for this sample in one method. The rest of the shared filters — name, package, tag, literature, mineral — are in [Search samples and data points](search.md).
 
 **Endpoint:** `POST /api/geochem/GCDataPoint/post?page=0&size=50`
 
 ```json
 {
-  "allowedAccess": "VIEWABLE",
   "dataPointLithoCriteria": {
+    "allowedAccess": "VIEWABLE",
     "sampleId": { "equals": 12345 }
   }
 }
 ```
 
-Same pattern for `/api/fissiontrack/FTDataPoint/post`, `/api/upb/UPbDataPoint/post`, and the other method groups — confirm the exact nested field name (`*LithoCriteria`) against the Swagger definition for that entity, since it varies slightly per method.
+`allowedAccess` for a method search sits inside `dataPointLithoCriteria`. The same body, with that path swapped, searches fission track (`/api/fissiontrack/FTDataPoint/post`), U–Pb (`/api/upb/UPbDataPoint/post`), and the other methods. Confirm the path in Swagger.
 
 ## Filter by child, up to the parent
 
@@ -40,29 +41,26 @@ Same pattern for `/api/fissiontrack/FTDataPoint/post`, `/api/upb/UPbDataPoint/po
 
 Child foreign-key names vary by method (`gcdataPointId`, `fTDataPointId`, `uPbDataPointId`, …) — check the Swagger definition for the exact field name before writing the filter.
 
-## Expand ids to full detail (hydration)
+## Known ids
 
-When you already have ids — from `findIds`, a map click, or a previous search — hydrate instead of re-running a criteria search:
+When you already have ids, search that entity with `id.in`. The same body works on `POST …/post` and on `POST …/download/post`.
 
-| Endpoint | Expands |
-|---|---|
-| `GET /api/core/hydrate-samples-by-id?sampleIds=1,2,3` | Samples + location |
-| `GET /api/core/hydrate-datapoints-by-id?ids=…` | Generic data points |
-| `GET /api/core/hydrate-gc-by-id?ids=…` | Geochemistry, with children in context |
-| `GET /api/core/hydrate-fissionTrack-by-id?ids=…` | Fission track |
-| `GET /api/core/hydrate-upb-by-id?ids=…` | U-Pb |
-| `GET /api/core/hydrate-he-by-id?ids=…` | Helium |
-| `GET /api/core/hydrate-arar-by-id?ids=…` | Ar-Ar |
-| `GET /api/core/hydrate-luhf-by-id?ids=…` | Lu-Hf |
-| `GET /api/core/hydrate-igsn-sample-info?igsn=…` | IGSN landing-style sample info |
+**Endpoint:** `POST /api/core/sample-with-locations/post?page=0&size=50`
 
-Ids are comma-separated query strings. Confirm exact parameter names in Swagger for your server version.
+```json
+{
+  "allowedAccess": "VIEWABLE",
+  "id": { "in": [1, 2, 3] }
+}
+```
+
+A method data point is the same call on that method's path, with `id.in` on the method criteria. Measurements for known parent ids use the child foreign key, as in the section above (`gcdataPointId.in`, and the equivalent on other methods).
 
 ## Identifiers you can query by
 
 | Id | Where | Notes |
 |---|---|---|
-| Internal numeric `id` | Every entity | What every other filter and hydrate endpoint expects |
+| Internal numeric `id` | Every entity | What every other filter expects |
 | `igsn` | Sample | String filter on `sample-with-locations` |
 | `name` | Sample, data point, … | Not globally unique — batch imports uniquify with `\\` (see [Batch upload via API](../03_contributing-data/batch-upload-via-api/)) |
 | `dataPackageId` | Sample, data point | The access-control container — see [Packages and access](../01_using-the-api/packages-and-access.md) |

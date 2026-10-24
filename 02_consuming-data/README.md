@@ -8,7 +8,8 @@ General API background (hierarchy, packages, Swagger, reference lists) lives in 
 
 | Guide | Topic |
 |---|---|
-| [Navigating and hydrating](navigating-and-hydrating.md) | Filtering by sample/parent id, expanding ids to full records, identifiers you can query by, soft-deleted rows |
+| [Search samples and data points](search.md) | Name, package, mineral, tag, and the other filters, for every method |
+| [Navigating records](navigating.md) | From a sample to its data points, from a measurement to its parent, and from known ids |
 | [Geographic queries](geographic-queries.md) | Region filters, fitting a map to a selection, GeoJSON, clusters |
 | [Download and export](download-and-export.md) | A selection of rows: CSV/JSON, the 50,000-row limit, shapefiles |
 
@@ -23,7 +24,7 @@ Every read goes through the same access-control layer as writes. Set **`allowedA
 2. Set allowedAccess on the query
 3. Count before pulling a large selection
 4. Filter by parent id, region, or package as needed
-5. Prefer findIds + hydrate, or /download/post, over walking huge paginated pages
+5. Prefer /download/post, or a search with id.in, over walking huge paginated pages
 ```
 
 **More than a couple hundred samples, data points, or data-point children?** Use the resource's raw download service (`…/download/post`) instead of paging — see [Download and export](download-and-export.md#rule-for-agents-more-than-a-couple-hundred-rows--raw-download).

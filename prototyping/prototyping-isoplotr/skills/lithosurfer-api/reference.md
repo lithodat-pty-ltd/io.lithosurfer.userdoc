@@ -10,7 +10,7 @@ This is the full map of Swagger groups → URL path prefixes → contents. Use i
 |---|---|---|---|---|
 | **01 Account** | `/api/account`, `/api/authenticate`, `/api/register`, `/api/activate` | 8 | 2 | Authentication, registration, password reset, current user |
 | **02 Management** | `/api/management/` | 78 | 20 | Communities, institutions, data packages, users, licenses, baskets, features |
-| **03 Core Model** | `/api/core/` | 234 | 49 | Sample, person, literature, image, lab, machine, vocab, archive, lookup tables, IGSN, hydration helpers |
+| **03 Core Model** | `/api/core/` | 234 | 49 | Sample, person, literature, image, lab, machine, vocab, archive, lookup tables, IGSN |
 | **04 Other** | `/api/other/` | 55 | 15 | Jobs, snapshots, misc cross-cutting |
 | **05 Geo Json** | `/lithoapi/*_geojson` | 48 | 1 | GeoJSON feature collections — one endpoint per data type (sample, age, AFT, AHe, ArAr, …) |
 | **06 UPb** | `/api/upb/` | 47 | 11 | U-Pb data points, spot data, age groups + lookups |
@@ -101,7 +101,6 @@ Search the Swagger cache for these path suffixes when executing agent tasks:
 | `/download/post` | Export raw rows (JSON/CSV), max 50k | [download-and-export.md](download-and-export.md) |
 | `/raw[/post]` | Paginated flat rows | [download-and-export.md](download-and-export.md) |
 | `/findIds/post` | Id list only | [download-and-export.md](download-and-export.md) |
-| `/hydrate-*-by-id` | Expand ids → nested DTOs | [domain-model.md](domain-model.md) |
 | `/geojson[/post]`, `/lithoapi/*_geojson` | Map feature collections | [geo-queries.md](geo-queries.md) |
 
 ## Lookup tables

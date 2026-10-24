@@ -5,7 +5,7 @@ Pulling larger result sets without paging through UI-sized lists — raw rows, C
 | Related | Doc |
 |---|---|
 | A whole package as one ZIP | [Download a data package](../05_managing-packages/catalogue/download-package.md) |
-| Filtering by parent/child id, hydration | [Navigating and hydrating](navigating-and-hydrating.md) |
+| Filtering by parent/child id, known ids | [Navigating records](navigating.md) |
 | Region filters | [Geographic queries](geographic-queries.md) |
 | Access scoping | [Packages and access](../01_using-the-api/packages-and-access.md) |
 
@@ -29,11 +29,10 @@ Page through `…/post?page=&size=` only for small results, or when the resource
 |---|---|---|
 | `POST …/post?page=&size=` | Typed DTOs, paginated | Browse / small pages (default `size` is often 20) |
 | `POST …/count/post` | A count | Check size before downloading |
-| `POST …/findIds/post` | An id list | Cheap id set for hydration or follow-up filters |
+| `POST …/findIds/post` | An id list | Cheap id set for a follow-up filter, such as a child's parent id |
 | `GET\|POST …/raw[/post]` | Flat rows, still paginated | "Spreadsheet" rows without the full nested DTO |
 | `POST …/download/post` | All matching raw rows, as JSON or CSV | One-shot export of a selection |
 | `GET\|POST …/downloadShapefile[/post]` | A shapefile ZIP | GIS export of a selection |
-| `GET /api/core/hydrate-*-by-id` | Nested DTOs | Expand known ids |
 
 Not every entity exposes every variant — check Swagger for the resource you need.
 
@@ -78,7 +77,7 @@ An optional `blacklist` query parameter takes a list of column names to omit fro
 ```
 Region / package criteria
   → count <Method>DataPoint
-  → download/post <Method>DataPoint      (or findIds + hydrate-*-by-id)
+  → download/post <Method>DataPoint
   → download/post the child measurement type, filtered by the parent id
 ```
 
@@ -106,19 +105,9 @@ Example — elemental concentrations for known GC data-point ids (chunk if there
 
 The same pattern applies to fission-track lengths, U-Pb spots, and other child measurement tables — find the child resource's `download/post` operation in Swagger.
 
-## Recipe: ids → hydrated objects
+## Known ids
 
-When you need nested structure rather than flat export rows:
-
-**Endpoint:** `POST /api/core/sample-with-locations/findIds/post`
-
-```json
-{ "allowedAccess": "VIEWABLE", "dataPackageId": { "equals": 123 } }
-```
-
-**Endpoint:** `GET /api/core/hydrate-samples-by-id?sampleIds=1,2,3`
-
-For method payloads, use the matching `hydrate-*-by-id` endpoint (`hydrate-gc-by-id`, `hydrate-fissionTrack-by-id`, `hydrate-upb-by-id`, …) — see [Navigating and hydrating](navigating-and-hydrating.md).
+Pass them as `id.in` on that entity's `POST …/post` or `POST …/download/post`. See [Navigating records](navigating.md).
 
 ## Raw vs download
 
@@ -141,7 +130,7 @@ Returns a ZIP (`application/octet-stream`). Also available on several method dat
 
 1. **Count** at each level (samples, data points, children).
 2. **Partition** the criteria: `dataPackageId`, a geographic tile, `id.greaterThan`/`id.lessThan` ranges, or `id.in` chunks of a few thousand.
-3. **Prefer `findIds` → chunked download/hydrate** over one giant nested walk.
+3. **Download each chunk** with the narrowed criteria, rather than one request for the whole tree.
 4. **Export children separately** — pull concentrations/spots with a parent-id filter rather than expecting a parent DTO to embed everything.
 5. Large **imports** go through `…/batch` on the write side — see [Batch upload via API](../03_contributing-data/batch-upload-via-api/). That is a separate, write-side concern from everything on this page.
 
@@ -153,4 +142,4 @@ Returns a ZIP (`application/octet-stream`). Also available on several method dat
 ## Related
 
 - Region filters: [Geographic queries](geographic-queries.md)
-- Filtering and hydration: [Navigating and hydrating](navigating-and-hydrating.md)
+- Filtering by parent, child, or known ids: [Navigating records](navigating.md)

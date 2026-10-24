@@ -137,7 +137,7 @@ Several resources expose `/cluster` and `/cluster/post` for map clustering (`max
 2. If count is manageable: /post list OR /findIds/post
 3. Optional: findGeoSquare to describe the actual footprint
 4. For bulk tables: /download/post (see download-and-export.md)
-5. For rich nested DTOs from ids: /api/core/hydrate-*-by-id
+5. For known ids: search that entity with id.in
 ```
 
 ## Gotchas

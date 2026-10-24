@@ -8,11 +8,10 @@ How to pull larger result sets without paging through UI-sized `/post` lists.
 |---|---|---|
 | `POST …/post?page=&size=` | Typed DTOs, paginated | Browse / small pages (default `size` often 20) |
 | `POST …/count/post` | `Long` | Check size before download |
-| `POST …/findIds/post` | `Long[]` | Cheap id set for hydrate or follow-up filters |
+| `POST …/findIds/post` | `Long[]` | Cheap id set for a follow-up filter, such as a child's parent id |
 | `GET\|POST …/raw[/post]` | `List<Map<String,Object>>` paginated | Flat “spreadsheet” rows, still paginated |
 | `POST …/download/post` | All matching raw rows as **JSON** or **CSV** | One-shot export of a selection |
 | `GET\|POST …/downloadShapefile[/post]` | ZIP shapefile | GIS export of the selection |
-| `GET /api/core/hydrate-*-by-id` | Nested DTOs | Expand known ids |
 
 Not every entity has every variant — search Swagger:
 
@@ -73,7 +72,7 @@ Optional `blacklist` query param: list of column names to omit from raw rows.
 ```
 Region / package criteria
   → count GCDataPoint
-  → download/post GCDataPoint   (or findIds + hydrate-gc-by-id)
+  → download/post GCDataPoint
   → for concentrations: download/post ElementalConcentration / OxideConcentration
        filtered by gCDataPointId.in = […]
 ```
@@ -101,22 +100,9 @@ node .cursor/skills/lithosurfer-api/scripts/call-api.js \
 
 Same pattern for FT lengths, U-Pb spots, etc. — find the child resource’s `/download/post` in Swagger.
 
-## Recipe: ids → hydrated objects
+## Known ids
 
-When you need nested structure rather than flat export rows:
-
-```bash
-# ids from findIds
-node .cursor/skills/lithosurfer-api/scripts/call-api.js \
-  POST "/api/core/sample-with-locations/findIds/post" \
-  --body '{ "allowedAccess": "VIEWABLE", "dataPackageId": { "equals": 123 } }'
-
-# hydrate (comma-separated)
-node .cursor/skills/lithosurfer-api/scripts/call-api.js \
-  GET "/api/core/hydrate-samples-by-id?sampleIds=1,2,3"
-```
-
-For method payloads: `hydrate-gc-by-id`, `hydrate-fissionTrack-by-id`, `hydrate-upb-by-id`, … (see [domain-model.md](domain-model.md)).
+Pass them as `id.in` on that entity's `POST …/post` or `POST …/download/post`. See [domain-model.md](domain-model.md).
 
 ## Raw vs download
 
@@ -140,7 +126,7 @@ Also available on several method data-point resources. Returns `application/octe
 
 1. **Count** at each level (samples, datapoints, children).
 2. **Partition** criteria: `dataPackageId`, geo tiles, `id.greaterThan` / `id.lessThan`, or `id.in` chunks of a few thousand.
-3. **Prefer findIds → chunked download/hydrate** over one giant nested walk.
+3. **Download each chunk** with the narrowed criteria, rather than one request for the whole tree.
 4. **Children separately** — export concentrations/spots with parent-id filters rather than hoping a parent DTO embeds everything.
 5. For **imports** of large geochem sets, use `/batch` (see `bulk-geochem-import` skill) — that is write-side, not download.
 
@@ -152,5 +138,5 @@ Also available on several method data-point resources. Returns `application/octe
 ## Related
 
 - Region filters: [geo-queries.md](geo-queries.md)
-- Hierarchy & hydrate list: [domain-model.md](domain-model.md)
+- Hierarchy and known ids: [domain-model.md](domain-model.md)
 - Auth / ACL: [SKILL.md](SKILL.md)

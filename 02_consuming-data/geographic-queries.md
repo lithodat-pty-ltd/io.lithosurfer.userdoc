@@ -4,7 +4,7 @@ Region filters, fitting a map to a selection, GeoJSON, and clustering.
 
 | Related | Doc |
 |---|---|
-| Parent/child filters, hydration | [Navigating and hydrating](navigating-and-hydrating.md) |
+| Parent/child filters, known ids | [Navigating records](navigating.md) |
 | Bulk export of a region | [Download and export](download-and-export.md) |
 | Access scoping | [Packages and access](../01_using-the-api/packages-and-access.md) |
 
@@ -140,7 +140,7 @@ Several resources expose `/cluster` and `/cluster/post` for map clustering (`max
 2. If the count is manageable: list via /post, or ids via /findIds/post
 3. Optional: findGeoSquare to describe the actual footprint of a selection
 4. For bulk export: see Download and export
-5. For rich nested detail from known ids: /api/core/hydrate-*-by-id
+5. For known ids: search that entity with id.in — see Navigating records
 ```
 
 ## Gotchas
@@ -153,5 +153,5 @@ Several resources expose `/cluster` and `/cluster/post` for map clustering (`max
 
 ## Related
 
-- Filtering by parent/child id, hydration: [Navigating and hydrating](navigating-and-hydrating.md)
+- Filtering by parent, child, or known ids: [Navigating records](navigating.md)
 - Bulk export of a selection: [Download and export](download-and-export.md)

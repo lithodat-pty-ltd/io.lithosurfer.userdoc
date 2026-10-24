@@ -350,7 +350,7 @@ const samples = await call('POST', '/api/core/sample-with-locations/post?page=0&
 
 | User intent | Doc |
 |---|---|
-| Understand sample → datapoint → measurements; hydrate by id | [domain-model.md](domain-model.md) |
+| Understand sample → datapoint → measurements | [domain-model.md](domain-model.md) |
 | Find data in a geographic region; GeoSquare vs bounds filter; GeoJSON | [geo-queries.md](geo-queries.md) |
 | Download / export large selections (raw, CSV, 50k limit, shapefile) | [download-and-export.md](download-and-export.md) |
 | Swagger group → path map | [reference.md](reference.md) |
@@ -365,7 +365,7 @@ const samples = await call('POST', '/api/core/sample-with-locations/post?page=0&
 3. Set allowedAccess on every search
 4. count/post before large pulls
 5. Use geo bounds / package / id filters as needed
-6. Prefer findIds + hydrate or /download/post over huge paginated DTO walks
+6. Prefer /download/post, or a search with id.in, over huge paginated DTO walks
 ```
 
 ## Recipes
@@ -443,7 +443,7 @@ Lookup tables live under `/api/core/L<Name>` (admin/lookup, prefix `L`) or `/api
 
 ## Additional resources
 
-- [domain-model.md](domain-model.md) — sample → datapoint → measurements; hydration.
+- [domain-model.md](domain-model.md) — sample → datapoint → measurements.
 - [geo-queries.md](geo-queries.md) — regional filters, `findGeoSquare`, GeoJSON.
 - [download-and-export.md](download-and-export.md) — raw/CSV download, 50k guard, shapefile.
 - [reference.md](reference.md) — full group → path-prefix map and group descriptions.
