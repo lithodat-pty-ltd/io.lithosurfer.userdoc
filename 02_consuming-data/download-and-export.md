@@ -137,7 +137,20 @@ Example — elemental concentrations for known GC data-point ids (chunk if there
 { "gcdataPointId": { "in": [99001, 99002, 99003] } }
 ```
 
-The same pattern applies to fission-track lengths, U-Pb spots, and other child measurement tables — find the child resource's `download/post` operation in Swagger.
+Each row is one value (long format). Besides the element (or oxide), concentration, error and detection limit, it carries the relative operator (`<` marks a value below the detection limit — read it before using the number), the isotope (elemental only), the GC data-point id plus its unit, method, laboratory and analysis date, the sample id, name and IGSN, and the sample location (`lat`, `lon`, precision, region). Oxide and elemental downloads have the same columns, except that oxides have no isotope or measured mass.
+
+The same pattern applies to the main child measurement tables of the other methods. Each has `download/post` (JSON), `download/csv` and `download/excel`, filtered **only** by the parent data-point ids (any other filter is refused with 400):
+
+| Child table | Endpoint base | Body |
+|---|---|---|
+| U-Pb spots | `/api/upb/UPbSpotData` | `{ "uPbDataPointId": { "in": [...] } }` |
+| Fission-track lengths | `/api/fissiontrack/ft-length-data` | `{ "fTDataPointId": { "in": [...] } }` |
+| Fission-track counts | `/api/fissiontrack/ft-count-data` | `{ "fTDataPointId": { "in": [...] } }` |
+| He whole grain | `/api/helium/HeWholeGrain` | `{ "heDataPointId": { "in": [...] } }` |
+| He in-situ | `/api/helium/HeInSitu` | `{ "heDataPointId": { "in": [...] } }` |
+| Ar-Ar steps | `/api/arar/ArArMeasurement` | `{ "arArDataPointId": { "in": [...] } }` |
+
+Each row carries all of the child's own columns, then the parent data-point id, data-point name, sample id, name and IGSN, and the sample location (`lat`, `lon`, precision, region). The cap is 180,000 rows per request.
 
 ## Known ids
 
