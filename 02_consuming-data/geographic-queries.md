@@ -84,13 +84,15 @@ The same four bounds fields work on method criteria. Example — geochemistry:
 
 ```json
 {
-  "allowedAccess": "VIEWABLE",
+  "dataPointLithoCriteria": { "allowedAccess": "VIEWABLE" },
   "lowerBound": -38.5,
   "leftBound": 144.0,
   "upperBound": -37.5,
   "rightBound": 145.5
 }
 ```
+
+The bounds are top-level fields; `allowedAccess` sits inside `dataPointLithoCriteria` on method resources.
 
 Works the same way for `FTDataPoint`, `UPbDataPoint`, `HeDataPoint`, `ArArDataPoint`, `LuHfDataPoint`, `PbIsotopeDataPoint`, `SrIsotopeDataPoint`, `IsoDataPoint`, `DepositInfo`, and other method groups that expose `findGeoSquare` — confirm which resources support it in Swagger for your server.
 

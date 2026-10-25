@@ -19,7 +19,7 @@ When you fetch **samples, data points, or data-point children** (concentrations,
 
 1. **Count first** with `POST …/count/post` and the same criteria. To count data points inside packages, without downloading them, use [Count data points in packages](../05_managing-packages/catalogue/count-package-contents.md) instead.
 2. **Find the download operation** for that resource in Swagger — usually `POST …/download/post` (flat JSON rows). Prefer it over `…/download/csv` / `…/download/excel` when you will process the rows yourself.
-3. **Download with the same criteria** in one request (up to 50,000 rows — see the limit below). For children, filter by the parent ids, e.g. `gcdataPointId.in`.
+3. **Get the ids, then download by id.** Call `POST …/findIds/post` with the criteria, then `POST …/download/post` with only `{"id": {"in": [those ids]}}` — up to 50,000 rows, see the limit below. Do not send selection filters such as sample ids, package ids or access straight to a download; see [Download by the resource's own ids](#download-by-the-resources-own-ids). For children, filter by the parent ids, e.g. `gcdataPointId.in`.
 
 Page through `…/post?page=&size=` only for small results, or when the resource has no download operation. Paging a large list costs one request per page and returns typed DTOs that are much bigger than the flat raw rows.
 
@@ -43,6 +43,37 @@ Not every entity exposes every variant — check Swagger for the resource you ne
 **Strategy above 50,000 rows:** split the request — by data package, by geographic tile (see [Geographic queries](geographic-queries.md)), by `id` ranges, or by method/child table — and download each chunk separately.
 
 Always run `count/post` before a download.
+
+## Download by the resource's own ids
+
+A download builds one large row per record (the record, its data point, sample and location). The server can only
+do that quickly when the criteria name the records directly, with `id.in` on the resource you download. Filters on
+related records — a data point's sample (`dataPointLithoCriteria.sampleId`), its package, `allowedAccess`, a
+region — make it build those rows for every record of the method first. On production a geochemistry download for
+about 2,000 sample ids ran for a minute and failed, while the same selection by data-point ids takes seconds.
+`…/findIds/post` and `…/count/post` handle these filters quickly.
+
+So download in two steps:
+
+1. `POST …/findIds/post` with the selection criteria → the ids of the records to download.
+2. `POST …/download/post` (or `/download/csv`, `/download/excel`, …) with only `{"id": {"in": [those ids]}}`.
+   Split very long id lists into chunks of a few thousand.
+
+Example — geochemistry data points of selected samples:
+
+**Endpoint:** `POST /api/geochem/GCDataPoint/findIds/post`
+
+```json
+{ "dataPointLithoCriteria": { "allowedAccess": "VIEWABLE", "sampleId": { "in": [300101, 300102, 300103] } } }
+```
+
+**Endpoint:** `POST /api/geochem/GCDataPoint/download/post?format=json`
+
+```json
+{ "id": { "in": [99001, 99002, 99003] } }
+```
+
+The web application's download button sends the same `id.in` body for the records you selected.
 
 ## Recipe: download samples in a region (JSON)
 
@@ -77,22 +108,25 @@ An optional `blacklist` query parameter takes a list of column names to omit fro
 ```
 Region / package criteria
   → count <Method>DataPoint
-  → download/post <Method>DataPoint
+  → findIds <Method>DataPoint
+  → download/post <Method>DataPoint with id.in
   → download/post the child measurement type, filtered by the parent id
 ```
 
-Example — geochemistry data points in a package:
+Example — geochemistry data points in a package. On method data-point resources the data-point filters
+(`allowedAccess`, `dataPackageId`, `sampleId`, …) sit inside `dataPointLithoCriteria`; unknown top-level fields
+are ignored, so a misplaced filter silently matches everything you can see.
 
-**Endpoint:** `POST /api/geochem/GCDataPoint/count/post`
+**Endpoint:** `POST /api/geochem/GCDataPoint/count/post`, then the same body to `POST /api/geochem/GCDataPoint/findIds/post`
 
 ```json
-{ "allowedAccess": "VIEWABLE", "dataPackageId": { "equals": 123 } }
+{ "dataPointLithoCriteria": { "allowedAccess": "VIEWABLE", "dataPackageId": { "equals": 123 } } }
 ```
 
 **Endpoint:** `POST /api/geochem/GCDataPoint/download/post?format=json`
 
 ```json
-{ "allowedAccess": "VIEWABLE", "dataPackageId": { "equals": 123 } }
+{ "id": { "in": [99001, 99002, 99003] } }
 ```
 
 Example — elemental concentrations for known GC data-point ids (chunk if there are many):
