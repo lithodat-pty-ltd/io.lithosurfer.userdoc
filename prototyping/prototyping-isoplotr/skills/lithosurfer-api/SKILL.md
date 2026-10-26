@@ -7,7 +7,7 @@ description: Call the Lithosurfer / AusGeochem REST API using its Swagger 2.0 do
 
 ## Overview
 
-The Lithosurfer / AusGeochem application exposes a JHipster-style REST API documented with **Swagger 2.0**. The API is split into ~21 logical groups (Account, Management, Core Model, per-method analytical data, Admin, …). Each group is its own OpenAPI document.
+The Lithosurfer / AusGeochem application exposes a JHipster-style REST API documented with **Swagger 2.0**. The API is split into logical groups (Account, Management, Core Model, per-method analytical data, and so on). Each group is its own OpenAPI document. There is no combined group.
 
 - **Prod host:** `https://app.ausgeochem.org`
 - **Swagger UI:** `https://app.ausgeochem.org/swagger-ui.html`
@@ -63,7 +63,7 @@ Coarse-grained role attached to the JHipster user via `jhi_user_authority`. Retu
 | `ROLE_CURATOR` | Institution-level curator | Can curate packages owned by their institution |
 | `ROLE_ADMIN` | Site admin | Bypasses package-level checks; can call admin-only endpoints |
 
-Most write endpoints require at minimum `ROLE_USER` plus the matching layer-3 membership below. Admin-only routes are concentrated in Swagger group `99 Admin`.
+Most write endpoints require at minimum `ROLE_USER` plus the matching layer-3 membership below. A few routes also require `ROLE_ADMIN`; they sit in the same Swagger group as the rest of that area.
 
 ### Layer 2 — Data-package visibility (`data_package.distribution`)
 
@@ -205,9 +205,12 @@ Every business endpoint follows:
 | `/api/luhf/` | 18 Lu-Hf | Lu-Hf |
 | `/api/pbisotope/` | 19 Pb-Isotope | Pb isotopes |
 | `/api/srisotope/` | 20 Sr-Isotope | Sr isotopes |
-| (everything) | 99 Admin | aggregates all paths — useful as a catch-all when you can't guess the group |
+| `/api/sample-set/` | 21 Sample Sets | named collections of samples |
+| `/api/borehole/` | 22 Borehole | geo projects, campaigns, expeditions |
+| `/api/billing/` | 23 Billing | license catalog, checkout, subscriptions |
+| `/api/subsample/` | 24 Subsamples | aliquots, splits, powders, mounts |
 
-> When in doubt, **search Group `99 Admin`** — it contains every endpoint in one document (~1900 paths) and is the safest place to grep.
+> When you cannot tell the group from the path, run `search-swagger.js` **without** `--group`. It searches every cached group. Do not look for a combined admin document — that group is not published.
 
 ### 2. Standard endpoints per entity
 
@@ -277,8 +280,7 @@ The full set of Swagger docs is ~7 MB. This skill keeps a local cache in `cache/
 ├── 01 Account.json
 ├── 02 Management.json
 ├── 03 Core Model.json
-├── ...
-└── 99 Admin.json
+└── ...
 ```
 
 The `cache/` directory is gitignored (see `cache/.gitignore`) — these files are large and change with each deploy.
@@ -437,7 +439,7 @@ Lookup tables live under `/api/core/L<Name>` (admin/lookup, prefix `L`) or `/api
 - **PascalCase vs kebab-case.** Some resources use PascalCase paths (`/api/core/Person`, `/api/fissiontrack/FTDataPoint`); others use kebab-case (`/api/core/sample-with-locations`, `/api/core/l-sample-kinds`). Don't normalize — copy the exact path from Swagger.
 - **GC FK quirk.** The geochem FK on `data_point` is `gcdata_point_id` (no underscore), not `gc_data_point_id`. See the `lithosurfer-datapoint-schema` skill for the full method → table map.
 - **GeoJSON endpoints live under `/lithoapi/`, not `/api/`.** They're documented in Swagger group `05 Geo Json`.
-- **99 Admin is the union of everything.** Use it as the search-of-last-resort, not as the canonical home of an endpoint.
+- **There is no combined Swagger group.** Search every cached group (omit `--group`) when the area is unclear. The old `99 Admin` document listed every `/api/**` path, was not reliably fetchable, and is no longer published.
 - **Trailing slash on `/v2/api-docs/`.** `app.ausgeochem.org` redirects `/v2/api-docs?…` → `/v2/api-docs/?…`. The fetch script follows the redirect; curl callers should pass `-L`.
 - **Don't confuse with the DB schema.** The API exposes DTOs, not raw tables. Field names usually match but joins/derived fields can differ. For raw SQL questions, use the `lithosurfer-datapoint-schema` skill.
 

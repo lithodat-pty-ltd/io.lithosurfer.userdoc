@@ -65,9 +65,14 @@ async function main() {
     throw new Error('swagger-resources/ returned no groups');
   }
 
-  const wanted = requested.length
+  const wanted = (requested.length
     ? resources.filter((r) => requested.includes(r.name))
-    : resources;
+    : resources
+  ).filter((r) => r.name !== '99 Admin');
+
+  if (requested.includes('99 Admin')) {
+    throw new Error('Swagger group "99 Admin" is not published. Fetch the real groups (omit --group) and search those.');
+  }
 
   if (requested.length && wanted.length !== requested.length) {
     const missing = requested.filter((n) => !resources.find((r) => r.name === n));

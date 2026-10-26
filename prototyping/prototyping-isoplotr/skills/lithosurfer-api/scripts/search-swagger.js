@@ -147,12 +147,20 @@ function main() {
     console.log('  ! Cache is older than 7 days — consider running fetch-swagger.js');
   }
 
-  const groups = group
+  if (group === '99 Admin') {
+    console.error('Swagger group "99 Admin" is not published. It listed every /api path and is not fetchable.');
+    console.error('Search without --group, or name the group for that area.');
+    process.exit(1);
+  }
+
+  const groups = (group
     ? index.groups.filter((g) => g.name === group)
-    : index.groups;
+    : index.groups
+  ).filter((g) => g.name !== '99 Admin');
 
   if (group && groups.length === 0) {
-    console.error(`Unknown group "${group}". Available: ${index.groups.map((g) => g.name).join(', ')}`);
+    const available = index.groups.filter((g) => g.name !== '99 Admin').map((g) => g.name);
+    console.error(`Unknown group "${group}". Available: ${available.join(', ')}`);
     process.exit(1);
   }
 

@@ -28,7 +28,10 @@ This is the full map of Swagger groups → URL path prefixes → contents. Use i
 | **18 Lu-Hf** | `/api/luhf/` | 49 | 12 | Lu-Hf data, age groups, isochrons |
 | **19 Pb-Isotope** | `/api/pbisotope/` | 61 | 16 | Pb-isotope data |
 | **20 Sr-Isotope** | `/api/srisotope/` | 37 | 8 | Sr-isotope data |
-| **99 Admin** | _all of the above_ | ~1900 | ~550 | Union of every endpoint. Use as catch-all when you can't guess the group |
+| **21 Sample Sets** | `/api/sample-set/` | | | Named collections of samples |
+| **22 Borehole** | `/api/borehole/` | | | Geo projects, campaigns, expeditions |
+| **23 Billing** | `/api/billing/` | | | License catalog, checkout, subscriptions |
+| **24 Subsamples** | `/api/subsample/` | | | Aliquots, splits, powders, mounts |
 
 ## Finding the right group
 
@@ -37,10 +40,10 @@ This is the full map of Swagger groups → URL path prefixes → contents. Use i
 1. **Authentication or current user?** → 01 Account
 2. **Communities, institutions, data packages, users, licenses?** → 02 Management
 3. **Samples, persons, literature, images, vocab/lookups, IGSN?** → 03 Core Model
-4. **Per-analytical-method data?** → 06–20 (see table) — pick by method.
+4. **Per-analytical-method data?** → 06–20 (see table) — pick by method. Sample sets, boreholes, billing and subsamples are 21–24.
 5. **Map / GeoJSON output?** → 05 Geo Json (under `/lithoapi/`, not `/api/`)
 6. **Background jobs / snapshots?** → 04 Other
-7. **Don't know?** → search 99 Admin.
+7. **Don't know?** → run `search-swagger.js` with no `--group` (every cached group). There is no combined group.
 
 ### Method → group quick-pick
 
