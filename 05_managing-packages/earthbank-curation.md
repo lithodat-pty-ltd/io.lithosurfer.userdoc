@@ -45,18 +45,6 @@ The curator confirms the following before accepting the package. The curator rec
 | **Contact** | A lead-author address that package enquiries go to. |
 | **Cite as** | A citation for the package. It may be typed in, generated from the package's own details, or taken from the journal paper when the data come from a publication. |
 
-## What the curator checks
-
-Basic curation follows the Data Curation Network **CURATE(D)** checklist, using three of its six steps.
-
-| Step | What it means here |
-|---|---|
-| **C — Check** | Read the files and the documentation. Confirm the title, the description, references where the package has them, and the DOI. |
-| **R — Request** | Ask the contributors for missing information or for changes. Keep a record of what changed and why. |
-| **D — Document** | Write down the curation work, including fixes such as correcting a location. |
-
-The other CURATE(D) steps — understand the data, augment the metadata, transform file formats, and a full FAIRness evaluation — are outside this basic checklist. The quality bar covers the FAIR confirmation, and CARE where the data call for it.
-
 ## Related
 
 - How review and publication work in LithoSurfer: [Curation](curation.md)
