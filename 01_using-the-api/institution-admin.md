@@ -50,6 +50,7 @@ You may change the name, description, country, logo and the ROR record. The othe
 
 ## Related
 
+- How new users get their institution: [Institution at sign-up](../06_administration/institution-at-sign-up.md)
 - [Packages and access](packages-and-access.md)
 - [Endpoints and Swagger](endpoints-and-swagger.md)
 - [Managing packages](../05_managing-packages/README.md)

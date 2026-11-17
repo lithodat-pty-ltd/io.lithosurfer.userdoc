@@ -19,6 +19,7 @@ to your data packages.
 - **Understand the API or troubleshoot access:** [Using the API](01_using-the-api/)
 - **Understand analytical fields and measurements:** [Data models](04_data-models/)
 - **Find, download, review, or publish a package:** [Managing packages](05_managing-packages/)
+- **Administer LithoSurfer (institution at sign-up):** [Administration](06_administration/)
 
 ## Working with an AI assistant
 
