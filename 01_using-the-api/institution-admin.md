@@ -37,7 +37,7 @@ You cannot change or remove an assignment that the user paid for. Changing it is
 
 Assignments that belong to a whole institution or community stay with the administrator.
 
-Giving a user a licence does not add data packages to their baskets.
+Giving a user a licence does not add data packages to their baskets. (Except the DM_PRO license)
 
 ## Your institution
 
