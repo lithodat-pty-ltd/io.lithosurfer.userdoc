@@ -29,6 +29,7 @@ Sample (+ Location)                 ← physical specimen; lat/lon when known
 1. **Sample is the geographic anchor.** Coordinates come from the sample’s location (maps may also use mirrored coords on data points).
 2. **Measurements belong to the analysis**, not to the sample alone. Elemental concentrations belong to a `GCDataPoint`; fission-track lengths to an `FTDataPoint`; and so on.
 3. **Create along the chain.** Sample id first, then data point, then child measurements.
+4. **Deleting a sample does not delete its data points.** The sample is revoked: it leaves sample search but still loads by id, and its data points stay visible — see [Delete](endpoints-and-swagger.md#delete).
 
 ---
 

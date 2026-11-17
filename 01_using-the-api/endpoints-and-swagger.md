@@ -54,6 +54,14 @@ Paging uses `page` (0-based), `size`, and `sort=field,asc` or `sort=field,desc`.
 
 Deleted records disappear from the UI and from list, search and count. For ordinary use that is the whole of it.
 
+**Samples are the exception.** A sample that data points refer to is never removed. Deleting it revokes it, like a retracted publication:
+
+- It drops out of sample search, sample count and the sample map.
+- It still loads by id, and the UI marks it **Deleted**.
+- Its data points stay visible, in every package, at the sample's location. Delete those data points separately if they should go too.
+
+This protects packages that use a sample from another package: that package's team cannot hide your data points.
+
 The row is stamped (`deletedTimestamp`) rather than physically dropped, which only matters if you look past the API:
 
 | Consequence | What to do |
@@ -61,7 +69,7 @@ The row is stamped (`deletedTimestamp`) rather than physically dropped, which on
 | Names of remaining records must stay unique | A deleted name can be reused. Two undeleted samples (or data points) still cannot share a name — see [batch upload](../03_contributing-data/batch-upload-via-api/) |
 | Counts look high in SQL | Filter `deleted_timestamp IS NULL` (DTO field `deletedTimestamp`) |
 | Updates of deleted rows fail | You cannot PUT a record whose `deletedTimestamp` is set |
-| Direct GET by id | May still return the stamped row. Confirm against Swagger for your entity |
+| Direct GET by id | May still return the stamped row; samples always do. Confirm against Swagger for your entity |
 
 Not every table uses this pattern — confirm `deletedTimestamp` on the DTO in Swagger before relying on it.
 

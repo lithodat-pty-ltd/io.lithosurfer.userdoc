@@ -22,6 +22,7 @@ Exact request/response shapes change with server version — always confirm fiel
 | [Packages and access](packages-and-access.md) | Ownership / ACL: writable vs viewable; FINISHED / FROZEN |
 | [Endpoints and Swagger](endpoints-and-swagger.md) | Where to find operations; create / read / update / delete |
 | [Reference lists](reference-lists.md) | Resolving names (`Zr`, `Near-total`, …) to numeric IDs |
+| [Institution admin](institution-admin.md) | Licences of your institution's users; your institution's description |
 
 **Contributing workflows** (batch create, geochem upload, updates) are under [`03_contributing-data/`](../03_contributing-data/), not here.
 

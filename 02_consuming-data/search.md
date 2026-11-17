@@ -19,7 +19,7 @@ The same body is the count, the id list, and the row download:
 | `POST …/findIds/post` | The matching ids |
 | `POST …/download/post` | The matching rows, up to the export limit — see [Download and export](download-and-export.md) |
 
-Deleted rows are left out. To go from a sample to its data points, or from a measurement to its parent, see [Navigating records](navigating.md).
+Deleted rows are left out. A data point whose sample was deleted is not: deleting a sample only revokes it ([Delete](../01_using-the-api/endpoints-and-swagger.md#delete)). To go from a sample to its data points, or from a measurement to its parent, see [Navigating records](navigating.md).
 
 ## Where a filter goes
 

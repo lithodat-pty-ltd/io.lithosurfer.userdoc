@@ -75,6 +75,8 @@ Search and list endpoints exclude soft-deleted rows by default. If a count or an
 
 Check the entity's criteria definition in Swagger — not every table exposes `deletedTimestamp`. See also [Delete](../01_using-the-api/endpoints-and-swagger.md#delete).
 
+A data point search still returns data points whose sample was deleted, and sample filters on it still match that sample. The sample's own `deletedTimestamp` tells you it was revoked: load it by `sampleId` and check the field.
+
 ## Related
 
 - Region filters: [Geographic queries](geographic-queries.md)
