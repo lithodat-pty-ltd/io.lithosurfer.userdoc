@@ -9,7 +9,7 @@ General information for working with LithoSurfer / EarthBank through the REST AP
 | Create, batch upload, update | [`03_contributing-data/`](../03_contributing-data/) |
 | What each analytical method records | [`04_data-models/`](../04_data-models/) |
 | Find, download, review, or publish a package | [`05_managing-packages/`](../05_managing-packages/) |
-| Settings administrators maintain | [`06_administration/`](../06_administration/) |
+| Settings administrators maintain | [`99_administration/`](../99_administration/) |
 
 Exact request/response shapes change with server version — always confirm field names in **Swagger UI** for your host.
 
